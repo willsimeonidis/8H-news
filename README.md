@@ -12,3 +12,5 @@ Stories are real (mostly).
 And if something happens at Bathurst High, 8H‑News is already reporting it.
 
 Welcome to the only news outlet brave enough to cover the things everyone else is too scared, too confused, or too responsible to publish.
+
+https://willsimeonidis.github.io/8H-news/
