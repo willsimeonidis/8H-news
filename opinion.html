@@ -1,1 +1,99 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opinion — 8H Times</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>DEVELOPING: sources close to the situation decline to comment, again</span>
+    <span>EXCLUSIVE: nobody asked, we reported anyway</span>
+    <span>MARKETS: vending machine restocked, analysts stunned</span>
+    <span>WEATHER: 100% chance of chaos by third period</span>
+    <span>DEVELOPING: sources close to the situation decline to comment, again</span>
+    <span>EXCLUSIVE: nobody asked, we reported anyway</span>
+    <span>MARKETS: vending machine restocked, analysts stunned</span>
+    <span>WEATHER: 100% chance of chaos by third period</span>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-top">
+      <span class="dateline" id="dateline">MONDAY EDITION</span>
+      <span class="dateline">EST. 2026</span>
+      <span class="dateline">NO. 001</span>
+    </div>
+    <h1 class="title">8H <span>Times</span></h1>
+    <p class="tagline">Independent news, powered by chaos.</p>
+  </div>
+</header>
+
+<nav class="navbar">
+  <a href="index.html">Front Page</a>
+  <a href="breaking.html">Breaking</a>
+  <a href="sports.html">Sports Desk</a>
+  <a href="opinion.html" class="active">Opinion</a>
+  <a href="#">Weather</a>
+  <a href="#">Archive</a>
+</nav>
+
+<main class="front-page">
+
+  <section class="section-head">
+    <span class="kicker">SECTION</span>
+    <h2 class="section-title">Opinion</h2>
+    <p class="dek">Hot takes from the editorial board. Views expressed are strong, and only sometimes defensible.</p>
+  </section>
+
+  <div class="grid single-col">
+
+    <article class="story">
+      <span class="kicker">OPINION</span>
+      <h3>Op-Ed: The Back Row Deserves More Respect Than It Gets</h3>
+      <p class="dek">A member of the editorial board makes the case for the most misunderstood seats in the room.</p>
+    </article>
+
+    <article class="story">
+      <span class="kicker">OPINION</span>
+      <h3>Op-Ed: Group Projects Are a Broken System and It's Time We Said So</h3>
+      <p class="dek">One person does the work. Everyone gets the grade. The math has never worked.</p>
+    </article>
+
+    <article class="story">
+      <span class="kicker">OPINION</span>
+      <h3>Op-Ed: In Defense of Bringing Your Own Snacks</h3>
+      <p class="dek">Sharing is caring, but caring has limits, and so does the vending machine's stock.</p>
+    </article>
+
+    <article class="story">
+      <span class="kicker">OPINION</span>
+      <h3>Op-Ed: The Five-Minute Warning Bell Lied to Us All</h3>
+      <p class="dek">An investigation into whether it was ever actually five minutes.</p>
+    </article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <span class="rule"></span>
+  <p>8H Times — where the news is fake, but the friendship is real.</p>
+  <p class="fine-print">Sources protected. Headlines final. Corrections rare.</p>
+</footer>
+
+<script>
+  const days = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
+  const d = new Date();
+  document.getElementById("dateline").textContent = days[d.getDay()] + " EDITION";
+</script>
+
+</body>
+</html>
