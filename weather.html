@@ -1,1 +1,130 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather — 8H Times</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>DEVELOPING: sources close to the situation decline to comment, again</span>
+    <span>EXCLUSIVE: nobody asked, we reported anyway</span>
+    <span>MARKETS: vending machine restocked, analysts stunned</span>
+    <span>WEATHER: live feed now connected, forecasters put out of a job</span>
+    <span>DEVELOPING: sources close to the situation decline to comment, again</span>
+    <span>EXCLUSIVE: nobody asked, we reported anyway</span>
+    <span>MARKETS: vending machine restocked, analysts stunned</span>
+    <span>WEATHER: live feed now connected, forecasters put out of a job</span>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-top">
+      <span class="dateline" id="dateline">MONDAY EDITION</span>
+      <span class="dateline">EST. 2026</span>
+      <span class="dateline">NO. 001</span>
+    </div>
+    <h1 class="title">8H <span>Times</span></h1>
+    <p class="tagline">Independent news, powered by chaos.</p>
+  </div>
+</header>
+
+<nav class="navbar">
+  <a href="index.html">Front Page</a>
+  <a href="breaking.html">Breaking</a>
+  <a href="sports.html">Sports Desk</a>
+  <a href="opinion.html">Opinion</a>
+  <a href="weather.html" class="active">Weather</a>
+  <a href="archive.html">Archive</a>
+</nav>
+
+<main class="front-page">
+
+  <section class="section-head">
+    <span class="kicker">SECTION · LIVE</span>
+    <h2 class="section-title">Weather</h2>
+    <p class="dek">Real-time conditions for Bathurst, NSW — pulled automatically, updated every time this page loads.</p>
+  </section>
+
+  <div id="weather-box" class="weather-box">
+    <p class="weather-loading">Loading live conditions…</p>
+  </div>
+
+  <div class="grid single-col" id="forecast-grid"></div>
+
+</main>
+
+<footer class="site-footer">
+  <span class="rule"></span>
+  <p>8H Times — where the news is fake, but the friendship is real.</p>
+  <p class="fine-print">Sources protected. Headlines final. Corrections rare. Weather data via Open-Meteo.</p>
+</footer>
+
+<script>
+  const days = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
+  const d = new Date();
+  document.getElementById("dateline").textContent = days[d.getDay()] + " EDITION";
+
+  const weatherLabels = {
+    0: "Clear sky", 1: "Mostly clear", 2: "Partly cloudy", 3: "Overcast",
+    45: "Foggy", 48: "Foggy", 51: "Light drizzle", 53: "Drizzle", 55: "Heavy drizzle",
+    61: "Light rain", 63: "Rain", 65: "Heavy rain", 71: "Light snow", 73: "Snow",
+    75: "Heavy snow", 80: "Rain showers", 81: "Rain showers", 82: "Violent showers",
+    95: "Thunderstorm", 96: "Thunderstorm with hail", 99: "Severe thunderstorm"
+  };
+
+  async function loadWeather() {
+    const box = document.getElementById("weather-box");
+    const forecastGrid = document.getElementById("forecast-grid");
+    try {
+      const res = await fetch(
+        "https://api.open-meteo.com/v1/forecast?latitude=-33.42&longitude=149.58&current=temperature_2m,weather_code,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=Australia/Sydney"
+      );
+      const data = await res.json();
+
+      const current = data.current;
+      const label = weatherLabels[current.weather_code] || "Conditions unclear";
+
+      box.innerHTML = `
+        <div class="weather-now">
+          <span class="kicker">RIGHT NOW · BATHURST NSW</span>
+          <div class="weather-temp">${Math.round(current.temperature_2m)}°C</div>
+          <div class="weather-desc">${label}</div>
+          <div class="weather-wind">Wind: ${Math.round(current.wind_speed_10m)} km/h</div>
+        </div>
+      `;
+
+      const daily = data.daily;
+      let cards = "";
+      for (let i = 0; i < Math.min(4, daily.time.length); i++) {
+        const date = new Date(daily.time[i]);
+        const dayName = i === 0 ? "Today" : days[date.getDay()].charAt(0) + days[date.getDay()].slice(1,3).toLowerCase();
+        const dLabel = weatherLabels[daily.weather_code[i]] || "—";
+        cards += `
+          <article class="story weather-day">
+            <span class="kicker">${dayName.toUpperCase()}</span>
+            <h3>${dLabel}</h3>
+            <p class="dek">High ${Math.round(daily.temperature_2m_max[i])}°C · Low ${Math.round(daily.temperature_2m_min[i])}°C</p>
+          </article>
+        `;
+      }
+      forecastGrid.innerHTML = cards;
+
+    } catch (err) {
+      box.innerHTML = `<p class="weather-loading">Live feed unavailable right now — check back shortly.</p>`;
+    }
+  }
+
+  loadWeather();
+</script>
+
+</body>
+</html>
