@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,28 +53,18 @@
 
   <div class="grid single-col">
 
+    <!-- MAGIC 8-BALL SECTION -->
     <article class="story">
       <span class="kicker">SPORTS DESK</span>
-      <h3>This section is under investigation</h3>
-      <p class="dek">revisit soon for the full reveal.</p>
-    </article>
+      <h3>🎱 8H‑News Magic 8‑Ball</h3>
+      <p class="dek">Ask the 8‑Ball for your sporting fate.</p>
 
-    <article class="story">
-      <span class="kicker">SPORTS DESK</span>
-      <h3>This section is under investigation</h3>
-      <p class="dek">revisit soon for the full reveal.</p>
-    </article>
-
-    <article class="story">
-      <span class="kicker">SPORTS DESK</span>
-      <h3>This section is under investigation</h3>
-      <p class="dek">revisit soon for the full reveal.</p>
-    </article>
-
-    <article class="story">
-      <span class="kicker">SPORTS DESK</span>
-      <h3>This section is under investigation</h3>
-      <p class="dek">revisit soon for the full reveal.</p>
+      <div style="text-align:center; margin-top:20px;">
+        <button onclick="eightBall()" style="padding:10px 20px; font-size:18px;">
+          Ask the 8‑Ball
+        </button>
+        <p id="answer" style="font-size:20px; margin-top:20px; font-weight:bold;"></p>
+      </div>
     </article>
 
   </div>
@@ -92,6 +81,31 @@
   const days = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
   const d = new Date();
   document.getElementById("dateline").textContent = days[d.getDay()] + " EDITION";
+
+  function eightBall() {
+    const responses = [
+      "Absolutely yes",
+      "No chance at all",
+      "Ask again later",
+      "The birds say no",
+      "Cody is still running, try again",
+      "Lucas has not returned, so yes",
+      "Probably not",
+      "Definitely",
+      "This is an L moment",
+      "The plovers decide your fate",
+      "Chaos incoming",
+      "Surprisingly yes",
+      "Not in this lifetime",
+      "Maybe… if you survive recess",
+      "The hallway creatures say yes",
+      "The NPCs disagree",
+      "Try again, skill issue detected"
+    ];
+
+    const random = Math.floor(Math.random() * responses.length);
+    document.getElementById("answer").innerText = responses[random];
+  }
 </script>
 
 </body>
