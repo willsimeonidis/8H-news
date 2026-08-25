@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>8H-News – Review & Submissions</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="page-review">
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="nav-link">Front Page</a>
+      <a href="weekly.html" class="nav-link">Weekly</a>
+      <a href="8ball.html" class="nav-link">8-Ball</a>
+      <a href="lore.html" class="nav-link">Lore</a>
+      <a href="weather.html" class="nav-link">Weather</a>
+      <a href="review.html" class="nav-link active">Review</a>
+      <a href="archive.html" class="nav-link">Archive</a>
+    </div>
+    <div class="nav-right">
+      <a href="#" id="nav-signin" class="nav-link nav-signin">Sign In</a>
+      <span id="nav-account" class="nav-account" style="display:none;"></span>
+    </div>
+  </nav>
+
+  <main class="layout layout-split">
+    <section class="section">
+      <h2 class="hed">Submit a story</h2>
+      <p class="dek">Write your article and send it to the 8H‑News editors (you).</p>
+
+      <div class="form-block">
+        <label>Title</label>
+        <input type="text" id="review-title" placeholder="Story title">
+
+        <label>Body</label>
+        <textarea id="review-body" rows="6" placeholder="Write your story here…"></textarea>
+
+        <button class="btn primary" id="submit-review-btn">Submit story</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="hed">Your submissions</h2>
+      <p class="dek">Everything you’ve sent in so far.</p>
+      <div id="user-submissions" class="card-list">
+        <!-- Filled by app.js -->
+      </div>
+
+      <h2 class="hed" style="margin-top:2rem;">Admin panel</h2>
+      <p class="dek">Visible only to <strong>will.simeonidis@gmail.com</strong>.</p>
+      <div id="admin-submissions" class="card-list">
+        <!-- Filled by app.js -->
+      </div>
+
+      <button class="btn" id="logout-btn">Sign out</button>
+    </section>
+  </main>
+
+  <!-- Login popup -->
+  <div id="login-popup" class="login-popup">
+    <div class="login-dialog">
+      <button class="login-close" id="login-later">×</button>
+      <h2 class="hed">Sign in to manage stories</h2>
+      <p class="dek">Log in or create an account to submit and review stories.</p>
+
+      <div class="login-columns">
+        <form id="login-form" class="login-form">
+          <h3 class="hed-sm">Log in</h3>
+          <label>Email</label>
+          <input type="email" id="login-email" required>
+          <label>Password</label>
+          <input type="password" id="login-password" required>
+          <button type="submit" class="btn primary">Sign In</button>
+        </form>
+
+        <form id="register-form" class="login-form">
+          <h3 class="hed-sm">Create account</h3>
+          <label>Email</label>
+          <input type="email" id="register-email" required>
+          <label>Password</label>
+          <input type="password" id="register-password" required>
+          <button type="submit" class="btn">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
