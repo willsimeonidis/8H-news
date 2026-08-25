@@ -1,98 +1,49 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Archive — 8H Times</title>
-<link rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>8H-News – Archive</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="page-archive">
 
-<div class="ticker">
-  <div class="ticker-track">
-    <span>DEVELOPING: sources close to the situation decline to comment, again</span>
-    <span>EXCLUSIVE: nobody asked, we reported anyway</span>
-    <span>WEATHER: 100% chance of chaos by third period</span>
-    <span>DEVELOPING: sources close to the situation decline to comment, again</span>
-    <span>EXCLUSIVE: nobody asked, we reported anyway</span>
-    <span>WEATHER: 100% chance of chaos by third period</span>
-  </div>
-</div>
-
-<header class="masthead">
-  <div class="masthead-inner">
-    <div class="masthead-top">
-      <span class="dateline" id="dateline">MONDAY EDITION</span>
-      <span class="dateline">EST. 2026</span>
-      <span class="dateline">NO. 001</span>
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="nav-link">Front Page</a>
+      <a href="weekly.html" class="nav-link">Weekly</a>
+      <a href="8ball.html" class="nav-link">8-Ball</a>
+      <a href="lore.html" class="nav-link">Lore</a>
+      <a href="weather.html" class="nav-link">Weather</a>
+      <a href="review.html" class="nav-link">Review</a>
+      <a href="archive.html" class="nav-link active">Archive</a>
     </div>
-    <h1 class="title">8H <span>Times</span></h1>
-    <p class="tagline">Independent news, powered by chaos.</p>
-  </div>
-</header>
+    <div class="nav-right">
+      <a href="#" id="nav-signin" class="nav-link nav-signin">Sign In</a>
+      <span id="nav-account" class="nav-account" style="display:none;"></span>
+    </div>
+  </nav>
 
-<nav class="navbar">
-  <a href="index.html">Front Page</a>
-  <a href="breaking.html">Weekly</a>
-  <a href="sports.html">8‑Ball</a>
-  <a href="opinion.html">LORE OF FABI</a>
-  <a href="weather.html">Weather</a>
-  <a href="archive.html" class="active">Archive</a>
-</nav>
+  <main class="layout">
+    <section class="section">
+      <h2 class="hed">Archive</h2>
+      <p class="dek">Paste links or summaries of past issues here.</p>
+    </section>
 
-<main class="front-page">
+    <section class="grid grid-2">
+      <article class="story-card">
+        <span class="kicker">Issue</span>
+        <h3 class="hed-sm">Week 1</h3>
+        <p class="dek">Summary or link.</p>
+      </article>
+      <article class="story-card">
+        <span class="kicker">Issue</span>
+        <h3 class="hed-sm">Week 2</h3>
+        <p class="dek">Summary or link.</p>
+      </article>
+    </section>
+  </main>
 
-  <section class="section-head">
-    <span class="kicker">SECTION</span>
-    <h2 class="section-title">Archive</h2>
-    <p class="dek">Back issues of record. Every headline we've ever run, preserved for posterity.</p>
-  </section>
-
-  <div class="grid single-col">
-
-    <article class="story">
-      <span class="kicker">ISSUE NO. 001</span>
-      <h3>Last Weeks News: Why awa is still single and ready to mingle.</h3>
-      <p class="dek">Awa has reportedly been seen, drinking out of the toilets, on his desperate search for a new partner.</p>
-    </article>
-
-      <article class="story">
-      <span class="kicker">ISSUE NO. 002</span>
-      <h3>“Just Tom. Nothing More. Nothing Less.”</h3>
-      <p class="dek">Bathurst High has confirmed that Tom Ellis is, in fact, just Tom.
-No one knows what he does. No one knows why he’s here. He simply exists — like a background NPC who occasionally says something profound by accident.
-Tom’s presence has been described as “neutral,” “stable,” and “the human equivalent of a default ringtone.”
-Students rely on Tom for emotional support, even though he doesn’t know why.</p>
-    </article>
-
-    <article class="story">
-      <span class="kicker">ISSUE NO. 003</span>
-      <h3>“Discord Mod Energy Detected — Grass Untouched Since 2021”</h3>
-      <p class="dek">Harrison Sharp has officially been declared Bathurst High’s real‑life Discord mod, complete with gooner tendencies and a strict no‑grass‑touching policy.
-Witnesses say he walks the halls muttering “that’s against the rules” and occasionally threatens to “issue a timeout IRL.”
-Harry’s natural habitat is indoors, preferably in front of a screen, preferably arguing with strangers online.
-Experts warn he may begin moderating the school cafeteria if left unsupervised.</p>
-    </article>
-    
-  </div>
-</main>
-
-<footer class="site-footer">
-  <span class="rule"></span>
-  <p>8H Times — where the news is fake, but the friendship is real.</p>
-  <p class="fine-print">Sources protected. Headlines final. Corrections rare.
-  This website is made purely for jokes, fun, and light‑hearted entertainment. Everything here is meant for humour and educational creativity only — nothing is intended to bully, target, or harm anyone in any way.</p>
-</footer>
-
-<script>
-  const days = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
-  const d = new Date();
-  document.getElementById("dateline").textContent = days[d.getDay()] + " EDITION";
-</script>
-
+  <script type="module" src="app.js"></script>
 </body>
 </html>
