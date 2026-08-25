@@ -1,42 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>8H-News – Lore & Legends">
-
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <title>Lore – 8H-News</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<base href="/8H-news/">
-  
 <body>
-
-<div class="ticker">
-  <div class="ticker-track">
-    <span>8H Lore</span>
-    <span>Legends of the classroom</span>
-    <span>Stories passed down through generations</span>
-  </div>
-</div>
-
-<header class="masthead">
-  <div class="masthead-inner">
-    <div class="masthead-top">
-      <span>Rainharp House</span>
-      <span>NSW, Australia</span>
-    </div>
-
-    <h1 class="title">8H<span>News</span></h1>
-    <p class="tagline">Lore & Legends</p>
-
-    <div class="masthead-bottom">
-      <div class="rule"></div>
-      <div class="rule"></div>
-    </div>
-
-    <p class="desc">The myths, the chaos, the unforgettable moments — all preserved for future generations of 8H.</p>
-  </div>
-</header>
 
 <nav class="navbar">
   <a href="index.html">Front Page</a>
@@ -50,86 +20,11 @@
   <span id="nav-account" style="display:none;"></span>
 </nav>
 
-<main class="front-page">
-
-  <section class="section-head">
-    <h2 class="section-title">Lore of 8H</h2>
-    <p class="dek">These are the stories that shaped the culture of 8H — dramatic, hilarious, and occasionally questionable.</p>
-  </section>
-
-  <div class="grid single-col">
-
-    <div class="story">
-      <h3>The Great Pencil Heist</h3>
-      <p class="dek">A mysterious figure stole 14 pencils in one day. No fingerprints. No witnesses. Only chaos.</p>
-    </div>
-
-    <div class="story">
-      <h3>The Legend of Isaac</h3>
-      <p class="dek">Single. Ready to mingle. Possibly with Awa. (He denies everything.)</p>
-    </div>
-
-    <div class="story">
-      <h3>The Fall of Awa</h3>
-      <p class="dek">Awa’s reign of classroom dominance ended abruptly after the Great Chromebook Incident.</p>
-    </div>
-
-    <div class="story">
-      <h3>The Chair Flip of 2026</h3>
-      <p class="dek">A chair was flipped. A scream was heard. The room fell silent. History was made.</p>
-    </div>
-
-    <div class="story">
-      <h3>The Forbidden Corner</h3>
-      <p class="dek">A corner of the classroom that no one enters. Rumor says it contains a lost assignment from 2023.</p>
-    </div>
-
-  </div>
-
+<main>
+  <h2>8H Lore</h2>
+  <p>All the deep history of the 8H universe.</p>
 </main>
 
-<footer class="site-footer">
-  <p>© 2026 8H-News</p>
-  <p class="fine-print">Made by Will</p>
-</footer>
-
-<div id="login-popup" class="login-popup" style="display:none;">
-  <div class="login-dialog">
-
-    <button id="login-later">Sign in later</button>
-
-    <h2 class="hed">Sign in to 8H-News</h2>
-    <p class="dek">Log in or create an account.</p>
-
-    <div class="login-columns">
-
-      <form id="login-form" class="login-form">
-        <h3 class="hed-sm">Log in</h3>
-        <label>Email</label>
-        <input type="email" id="login-email" required>
-
-        <label>Password</label>
-        <input type="password" id="login-password" required>
-
-        <button type="submit">Sign In</button>
-      </form>
-
-      <form id="register-form" class="login-form">
-        <h3 class="hed-sm">Create account</h3>
-        <label>Email</label>
-        <input type="email" id="register-email" required>
-
-        <label>Password</label>
-        <input type="password" id="register-password" required>
-
-        <button type="submit">Register</button>
-      </form>
-
-    </div>
-  </div>
-</div>
-
 <script type="module" src="app.js"></script>
-
 </body>
 </html>
