@@ -3,23 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>8H-News – Front Page</title>
+
+  <!-- Your CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- REQUIRED: Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body class="page-front">
 
-  <div class="ticker">
-    <span class="ticker-label">Breaking</span>
-    <span class="ticker-text">Add your top headline here…</span>
-  </div>
+<body>
 
-  <header class="masthead">
-    <div class="masthead-inner">
-      <h1 class="site-title">8H-News</h1>
-      <p class="site-tagline">The official chaos of Year 8, now in print.</p>
-    </div>
-  </header>
-
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-left">
       <a href="index.html" class="nav-link active">Front Page</a>
@@ -30,80 +24,59 @@
       <a href="review.html" class="nav-link">Review</a>
       <a href="archive.html" class="nav-link">Archive</a>
     </div>
+
     <div class="nav-right">
       <a href="#" id="nav-signin" class="nav-link nav-signin">Sign In</a>
       <span id="nav-account" class="nav-account" style="display:none;"></span>
     </div>
   </nav>
 
+  <!-- Main content -->
   <main class="layout">
-    <section class="hero">
-      <span class="kicker">Top Story</span>
-      <h2 class="hed">Your main headline goes here</h2>
-      <p class="dek">Use this space for a short summary of the biggest story. You’ll paste your real text later.</p>
-    </section>
-
-    <section class="grid grid-3">
-      <article class="story-card">
-        <span class="kicker">News</span>
-        <h3 class="hed-sm">Story headline</h3>
-        <p class="dek">Short description of the story. Replace with your content.</p>
-      </article>
-      <article class="story-card">
-        <span class="kicker">School</span>
-        <h3 class="hed-sm">Story headline</h3>
-        <p class="dek">Short description of the story. Replace with your content.</p>
-      </article>
-      <article class="story-card">
-        <span class="kicker">Opinion</span>
-        <h3 class="hed-sm">Story headline</h3>
-        <p class="dek">Short description of the story. Replace with your content.</p>
-      </article>
-    </section>
-
-    <section class="grid grid-2">
-      <article class="story-card">
-        <span class="kicker">Feature</span>
-        <h3 class="hed-sm">Longer feature story</h3>
-        <p class="dek">Use this for your bigger pieces. Paste your text later.</p>
-      </article>
-      <article class="story-card">
-        <span class="kicker">Announcements</span>
-        <h3 class="hed-sm">Important updates</h3>
-        <p class="dek">Timetables, events, or anything important.</p>
-      </article>
-    </section>
+    <h1 class="hed">Welcome to 8H-News</h1>
+    <p class="dek">Add your stories later — this page is just the working template.</p>
   </main>
 
-  <!-- Login popup -->
-  <div id="login-popup" class="login-popup">
+  <!-- REQUIRED: Login popup -->
+  <div id="login-popup" class="login-popup" style="display:none;">
     <div class="login-dialog">
       <button class="login-close" id="login-later">×</button>
+
       <h2 class="hed">Sign in to 8H-News</h2>
-      <p class="dek">Log in or create an account to submit stories and see your dashboard.</p>
+      <p class="dek">Log in or create an account.</p>
 
       <div class="login-columns">
+
+        <!-- Login -->
         <form id="login-form" class="login-form">
           <h3 class="hed-sm">Log in</h3>
           <label>Email</label>
           <input type="email" id="login-email" required>
+
           <label>Password</label>
           <input type="password" id="login-password" required>
+
           <button type="submit" class="btn primary">Sign In</button>
         </form>
 
+        <!-- Register -->
         <form id="register-form" class="login-form">
           <h3 class="hed-sm">Create account</h3>
           <label>Email</label>
           <input type="email" id="register-email" required>
+
           <label>Password</label>
           <input type="password" id="register-password" required>
+
           <button type="submit" class="btn">Register</button>
         </form>
+
       </div>
     </div>
   </div>
 
+  <!-- REQUIRED: app.js -->
   <script type="module" src="app.js"></script>
+
 </body>
 </html>
