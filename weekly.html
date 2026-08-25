@@ -1,42 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>8H-News – Weekly Edition">
-
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <title>Weekly – 8H-News</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<base href="/8H-news/">
-  
 <body>
-
-<div class="ticker">
-  <div class="ticker-track">
-    <span>Weekly Edition</span>
-    <span>Fresh stories from 8H</span>
-    <span>Updated every week</span>
-  </div>
-</div>
-
-<header class="masthead">
-  <div class="masthead-inner">
-    <div class="masthead-top">
-      <span>Rainharp House</span>
-      <span>NSW, Australia</span>
-    </div>
-
-    <h1 class="title">8H<span>News</span></h1>
-    <p class="tagline">Weekly Edition</p>
-
-    <div class="masthead-bottom">
-      <div class="rule"></div>
-      <div class="rule"></div>
-    </div>
-
-    <p class="desc">Your weekly roundup of everything chaotic, dramatic, and mildly educational.</p>
-  </div>
-</header>
 
 <nav class="navbar">
   <a href="index.html">Front Page</a>
@@ -50,81 +20,11 @@
   <span id="nav-account" style="display:none;"></span>
 </nav>
 
-<main class="front-page">
-
-  <section class="section-head">
-    <h2 class="section-title">This Week in 8H</h2>
-    <p class="dek">A curated selection of the biggest stories from the past week.</p>
-  </section>
-
-  <div class="grid single-col">
-
-    <div class="story">
-      <h3>Weekly Highlight #1</h3>
-      <p class="dek">Your first weekly story goes here. Add real content whenever you want.</p>
-    </div>
-
-    <div class="story">
-      <h3>Weekly Highlight #2</h3>
-      <p class="dek">Another weekly update. Replace this text with your actual story.</p>
-    </div>
-
-    <div class="story">
-      <h3>Weekly Highlight #3</h3>
-      <p class="dek">More weekly chaos. Add whatever you want here.</p>
-    </div>
-
-    <div class="story">
-      <h3>Weekly Highlight #4</h3>
-      <p class="dek">This is your fourth weekly story. Fill it in later.</p>
-    </div>
-
-  </div>
-
+<main>
+  <h2>This Week at Bathurst High</h2>
+  <p>Weekly chaos reports go here.</p>
 </main>
 
-<footer class="site-footer">
-  <p>© 2026 8H-News</p>
-  <p class="fine-print">Made by Will</p>
-</footer>
-
-<div id="login-popup" class="login-popup" style="display:none;">
-  <div class="login-dialog">
-
-    <button id="login-later">Sign in later</button>
-
-    <h2 class="hed">Sign in to 8H-News</h2>
-    <p class="dek">Log in or create an account.</p>
-
-    <div class="login-columns">
-
-      <form id="login-form" class="login-form">
-        <h3 class="hed-sm">Log in</h3>
-        <label>Email</label>
-        <input type="email" id="login-email" required>
-
-        <label>Password</label>
-        <input type="password" id="login-password" required>
-
-        <button type="submit">Sign In</button>
-      </form>
-
-      <form id="register-form" class="login-form">
-        <h3 class="hed-sm">Create account</h3>
-        <label>Email</label>
-        <input type="email" id="register-email" required>
-
-        <label>Password</label>
-        <input type="password" id="register-password" required>
-
-        <button type="submit">Register</button>
-      </form>
-
-    </div>
-  </div>
-</div>
-
 <script type="module" src="app.js"></script>
-
 </body>
 </html>
