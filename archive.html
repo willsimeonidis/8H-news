@@ -1,49 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>8H-News – Archive</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+<title>8H-News – Archive">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="page-archive">
 
-  <nav class="navbar">
-    <div class="nav-left">
-      <a href="index.html" class="nav-link">Front Page</a>
-      <a href="weekly.html" class="nav-link">Weekly</a>
-      <a href="8ball.html" class="nav-link">8-Ball</a>
-      <a href="lore.html" class="nav-link">Lore</a>
-      <a href="weather.html" class="nav-link">Weather</a>
-      <a href="review.html" class="nav-link">Review</a>
-      <a href="archive.html" class="nav-link active">Archive</a>
-    </div>
-    <div class="nav-right">
-      <a href="#" id="nav-signin" class="nav-link nav-signin">Sign In</a>
-      <span id="nav-account" class="nav-account" style="display:none;"></span>
-    </div>
-  </nav>
+<body>
 
-  <main class="layout">
-    <section class="section">
-      <h2 class="hed">Archive</h2>
-      <p class="dek">Paste links or summaries of past issues here.</p>
-    </section>
+<div class="ticker"><div class="ticker-track">
+<span>Archive</span><span>Past Issues</span>
+</div></div>
 
-    <section class="grid grid-2">
-      <article class="story-card">
-        <span class="kicker">Issue</span>
-        <h3 class="hed-sm">Week 1</h3>
-        <p class="dek">Summary or link.</p>
-      </article>
-      <article class="story-card">
-        <span class="kicker">Issue</span>
-        <h3 class="hed-sm">Week 2</h3>
-        <p class="dek">Summary or link.</p>
-      </article>
-    </section>
-  </main>
+<header class="masthead">
+<div class="masthead-inner">
+<h1 class="title">8H<span>Archive</span></h1>
+<p class="tagline">Past issues</p>
+<div class="masthead-bottom"><div class="rule"></div><div class="rule"></div></div>
+</div>
+</header>
 
-  <script type="module" src="app.js"></script>
-</body>
-</html>
+<nav class="navbar">
+<a href="index.html">Front Page</a>
+<a href="weekly.html">Weekly</a>
+<a href="8ball.html">8-Ball</a>
+<a href="lore.html">Lore</a>
+<a href="weather.html">Weather</a>
+<a href="review.html">Review</a>
+<a href="archive.html" class="active">Archive</a>
+<a href="#" id="nav-signin">Sign In</a>
+<span id="nav-account" style="display:none;"></span>
+</nav>
+
+<main class="front-page">
+
+<section class="section-head">
+<h2 class="section-title">Archive</h2>
+<p class="dek">Paste your past issues here.</p>
+</section>
+
+<div class="grid">
+<div class="story"><h3>Week 1</h3><p class="dek">Summary.</p></div>
