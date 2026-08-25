@@ -1,49 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Lore – 8H-News</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+<title>8H Times — Lore</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>LORE UPDATE: mysterious events continue in Year 8</span>
+    <span>EXCLUSIVE: the Pencil King spotted again</span>
+    <span>DEVELOPING: hallway migration theories deepen</span>
+    <span>LORE UPDATE: mysterious events continue in Year 8</span>
+    <span>EXCLUSIVE: the Pencil King spotted again</span>
+    <span>DEVELOPING: hallway migration theories deepen</span>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-top">
+      <span class="dateline" id="dateline">MONDAY EDITION</span>
+      <span class="dateline">EST. 2026</span>
+      <span class="dateline">NO. 003</span>
+    </div>
+    <h1 class="title">8H <span>Times</span></h1>
+    <p class="tagline">Independent news, powered by chaos.</p>
+  </div>
+</header>
+
+<!-- NAVBAR -->
 <nav class="navbar">
-  <a href="index.html">Front Page</a>
-  <a href="weekly.html">Weekly</a>
-  <a href="8ball.html">8-Ball</a>
-  <a href="lore.html" class="active">Lore</a>
-  <a href="weather.html">Weather</a>
-  <a href="review.html">Review</a>
-  <a href="archive.html">Archive</a>
-  <a href="#" id="nav-signin">Sign In</a>
+  <a href="index.html">FRONT PAGE</a>
+  <a href="weekly.html">WEEKLY</a>
+  <a href="8ball.html">8‑BALL</a>
+  <a href="lore.html" class="active">LORE</a>
+  <a href="weather.html">WEATHER</a>
+  <a href="archive.html">ARCHIVE</a>
+  <a href="review.html">REVIEW</a>
+  <a href="#" id="nav-signin">SIGN IN</a>
   <span id="nav-account" style="display:none;"></span>
 </nav>
 
-<main>
-  <h2>8H Lore</h2>
+<!-- CONTENT -->
+<main class="front-page">
 
-  <article>
-    <h3>The Origin of Fabi</h3>
-    <p>Legend says Fabi once solved a maths problem so fast the Chromebook froze in fear.</p>
-  </article>
+  <section class="section-head">
+    <span class="kicker">SECTION · LORE</span>
+    <h2 class="section-title">The Legends of Year 8</h2>
+    <p class="dek">Stories whispered in hallways, passed down through generations of confused students.</p>
+  </section>
 
-  <article>
-    <h3>The Great Hallway Migration</h3>
-    <p>Every Year 8 student walked to the wrong classroom at the same time. No one knows why.</p>
-  </article>
+  <div class="grid single-col">
 
-  <article>
-    <h3>The Pencil King</h3>
-    <p>A student collected 47 pencils in one term. None of them were his.</p>
-  </article>
+    <article class="story">
+      <h3>The Origin of Fabi</h3>
+      <p class="dek">Legend says Fabi once solved a maths problem so fast the Chromebook froze in fear.</p>
+    </article>
 
-  <article>
-    <h3>The Day the Bell Didn’t Ring</h3>
-    <p>Students waited in silence for two minutes. Teachers panicked more than the kids.</p>
-  </article>
+    <article class="story">
+      <h3>The Great Hallway Migration</h3>
+      <p class="dek">Every Year 8 student walked to the wrong classroom at the same time. No one knows why.</p>
+    </article>
+
+    <article class="story">
+      <h3>The Pencil King</h3>
+      <p class="dek">A student collected 47 pencils in one term. None of them were his.</p>
+    </article>
+
+    <article class="story">
+      <h3>The Day the Bell Didn’t Ring</h3>
+      <p class="dek">Students waited in silence for two minutes. Teachers panicked more than the kids.</p>
+    </article>
+
+  </div>
+
 </main>
 
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span class="rule"></span>
+  <p>8H Times — where the news is fake, but the friendship is real.</p>
+  <p class="fine-print">Sources protected. Headlines final. Corrections rare.</p>
+</footer>
+
+<!-- LOGIN POPUP -->
+<div id="login-popup" class="login-popup" style="display:none;">
+  <div class="login-dialog">
+    <button id="login-later" class="close-btn">Sign in later</button>
+
+    <h2>Sign in to 8H Times</h2>
+    <p>Log in or create an account.</p>
+
+    <div class="login-columns">
+      <form id="login-form" class="login-form">
+        <h3>Log in</h3>
+        <label>Email</label>
+        <input type="email" id="login-email" required>
+
+        <label>Password</label>
+        <input type="password" id="login-password" required>
+
+        <button type="submit">Sign In</button>
+      </form>
+
+      <form id="register-form" class="login-form">
+        <h3>Create account</h3>
+        <label>Email</label>
+        <input type="email" id="register-email" required>
+
+        <label>Password</label>
+        <input type="password" id="register-password" required>
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+</div>
+
 <script type="module" src="app.js"></script>
+<script>
+  const days = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
+  const d = new Date();
+  document.getElementById("dateline").textContent = days[d.getDay()] + " EDITION";
+</script>
+
 </body>
 </html>
