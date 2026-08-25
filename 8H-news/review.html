@@ -2,78 +2,128 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>8H-News – Review & Submissions">
+<title>8H-News – Reviews">
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
 
-<div class="ticker"><div class="ticker-track">
-<span>Review</span><span>Submit Stories</span>
-</div></div>
+<div class="ticker">
+  <div class="ticker-track">
+    <span>8H Reviews</span>
+    <span>Unfiltered opinions</span>
+    <span>Rated by chaos</span>
+  </div>
+</div>
 
 <header class="masthead">
-<div class="masthead-inner">
-<h1 class="title">8H<span>Review</span></h1>
-<p class="tagline">Submit your stories</p>
-<div class="masthead-bottom"><div class="rule"></div><div class="rule"></div></div>
-</div>
+  <div class="masthead-inner">
+    <div class="masthead-top">
+      <span>Rainharp House</span>
+      <span>NSW, Australia</span>
+    </div>
+
+    <h1 class="title">8H<span>News</span></h1>
+    <p class="tagline">Reviews</p>
+
+    <div class="masthead-bottom">
+      <div class="rule"></div>
+      <div class="rule"></div>
+    </div>
+
+    <p class="desc">Honest, dramatic, and occasionally savage reviews from the students of 8H.</p>
+  </div>
 </header>
 
 <nav class="navbar">
-<a href="index.html">Front Page</a>
-<a href="weekly.html">Weekly</a>
-<a href="8ball.html">8-Ball</a>
-<a href="lore.html">Lore</a>
-<a href="weather.html">Weather</a>
-<a href="review.html" class="active">Review</a>
-<a href="archive.html">Archive</a>
-<a href="#" id="nav-signin">Sign In</a>
-<span id="nav-account" style="display:none;"></span>
+  <a href="index.html">Front Page</a>
+  <a href="weekly.html">Weekly</a>
+  <a href="8ball.html">8-Ball</a>
+  <a href="lore.html">Lore</a>
+  <a href="weather.html">Weather</a>
+  <a href="review.html" class="active">Review</a>
+  <a href="archive.html">Archive</a>
+  <a href="#" id="nav-signin">Sign In</a>
+  <span id="nav-account" style="display:none;"></span>
 </nav>
 
 <main class="front-page">
 
-<section class="section-head">
-<h2 class="section-title">Submit a Story</h2>
-<p class="dek">Write your article and send it in.</p>
-</section>
+  <section class="section-head">
+    <h2 class="section-title">Latest Reviews</h2>
+    <p class="dek">Our critics (students) give their brutally honest opinions.</p>
+  </section>
 
-<div class="grid single-col">
-<div class="story">
-<label>Title</label>
-<input id="review-title" style="width:100%;padding:0.5rem;">
-<label>Body</label>
-<textarea id="review-body" rows="6" style="width:100%;padding:0.5rem;"></textarea>
-<button id="submit-review-btn">Submit story</button>
-</div>
-</div>
+  <div class="grid single-col">
 
-<section class="section-head">
-<h2 class="section-title">Your Submissions</h2>
-<p class="dek">Everything you've sent.</p>
-</section>
+    <div class="story">
+      <h3>The School Lunch – ★★★☆☆</h3>
+      <p class="dek">Surprisingly edible on Tuesdays. Highly questionable on Fridays. The garlic bread remains undefeated.</p>
+    </div>
 
-<div id="user-submissions" class="grid single-col"></div>
+    <div class="story">
+      <h3>Classroom Chairs – ★★☆☆☆</h3>
+      <p class="dek">Ergonomics? Never heard of her. One flipped chair incident per week on average.</p>
+    </div>
 
-<section class="section-head">
-<h2 class="section-title">Admin Panel</h2>
-<p class="dek">Visible only to will.simeonidis@gmail.com</p>
-</section>
+    <div class="story">
+      <h3>Rainharp WiFi – ★☆☆☆☆</h3>
+      <p class="dek">Disconnects at the exact moment you need it. Possibly haunted.</p>
+    </div>
 
-<div id="admin-submissions" class="grid single-col"></div>
+    <div class="story">
+      <h3>Year 8 Drama – ★★★★★</h3>
+      <p class="dek">The best entertainment in the school. Plot twists every period.</p>
+    </div>
 
-<button id="logout-btn">Sign out</button>
+  </div>
 
 </main>
 
 <footer class="site-footer">
-<p>© 2026 8H-News</p>
-<p class="fine-print">Made by Will</p>
+  <p>© 2026 8H-News</p>
+  <p class="fine-print">Made by Will</p>
 </footer>
 
+<div id="login-popup" class="login-popup" style="display:none;">
+  <div class="login-dialog">
+
+    <button id="login-later">Sign in later</button>
+
+    <h2 class="hed">Sign in to 8H-News</h2>
+    <p class="dek">Log in or create an account.</p>
+
+    <div class="login-columns">
+
+      <form id="login-form" class="login-form">
+        <h3 class="hed-sm">Log in</h3>
+        <label>Email</label>
+        <input type="email" id="login-email" required>
+
+        <label>Password</label>
+        <input type="password" id="login-password" required>
+
+        <button type="submit">Sign In</button>
+      </form>
+
+      <form id="register-form" class="login-form">
+        <h3 class="hed-sm">Create account</h3>
+        <label>Email</label>
+        <input type="email" id="register-email" required>
+
+        <label>Password</label>
+        <input type="password" id="register-password" required>
+
+        <button type="submit">Register</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
 <script type="module" src="app.js"></script>
+
 </body>
 </html>
