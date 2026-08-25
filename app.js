@@ -12,7 +12,7 @@ const loginForm = document.getElementById("login-form");
 const registerForm = document.getElementById("register-form");
 const logoutBtn = document.getElementById("logout-btn");
 
-// ---------- Show/hide popup ----------
+// ---------- Popup control ----------
 function openLoginPopup() {
   if (loginPopup) loginPopup.style.display = "flex";
 }
@@ -22,10 +22,13 @@ function closeLoginPopup() {
 
 // ---------- Auto popup ONLY on first visit to index ----------
 window.addEventListener("DOMContentLoaded", () => {
-  const isIndex = window.location.pathname.endsWith("index.html") ||
-                  window.location.pathname === "/" ||
-                  window.location.pathname === "/8H-news/" ||
-                  window.location.pathname.endsWith("/8H-news/");
+  const path = window.location.pathname;
+
+  const isIndex =
+    path.endsWith("index.html") ||
+    path === "/" ||
+    path.endsWith("/8H-news/") ||
+    path.endsWith("/8H-news/index.html");
 
   if (isIndex && !sessionStorage.getItem("dismissedLoginPopup")) {
     if (loginPopup) loginPopup.style.display = "flex";
@@ -39,7 +42,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ---------- Navbar Sign In click ----------
+// ---------- Navbar Sign In ----------
 if (navSignin) {
   navSignin.addEventListener("click", (e) => {
     e.preventDefault();
@@ -47,15 +50,17 @@ if (navSignin) {
   });
 }
 
-// ---------- Auth helpers ----------
+// ---------- Refresh user ----------
 async function refreshUser() {
   const { data } = await supabaseClient.auth.getUser();
   const user = data?.user;
 
-  if (user && navAccount && navSignin) {
-    navAccount.style.display = "inline-block";
-    navAccount.textContent = user.email;
-    navSignin.textContent = "Account";
+  if (user) {
+    if (navAccount) {
+      navAccount.style.display = "inline-block";
+      navAccount.textContent = user.email;
+    }
+    if (navSignin) navSignin.textContent = "Account";
   } else {
     if (navAccount) navAccount.style.display = "none";
     if (navSignin) navSignin.textContent = "Sign In";
@@ -69,11 +74,16 @@ if (loginForm) {
     const email = document.getElementById("login-email").value;
     const password = document.getElementById("login-password").value;
 
-    const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+    const { error } = await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
+
     if (error) {
       alert("Login failed");
       return;
     }
+
     await refreshUser();
     closeLoginPopup();
   });
@@ -86,12 +96,17 @@ if (registerForm) {
     const email = document.getElementById("register-email").value;
     const password = document.getElementById("register-password").value;
 
-    const { error } = await supabaseClient.auth.signUp({ email, password });
+    const { error } = await supabaseClient.auth.signUp({
+      email,
+      password
+    });
+
     if (error) {
       alert("Registration failed");
       return;
     }
-    alert("Check your email to confirm.");
+
+    alert("Check your email to confirm your account.");
   });
 }
 
@@ -103,7 +118,7 @@ if (logoutBtn) {
   });
 }
 
-// ---------- On load, check user ----------
+// ---------- On load ----------
 refreshUser();
 
 // ---------- Magic 8-Ball ----------
@@ -136,7 +151,7 @@ if (eightballAsk && eightballQuestion && eightballAnswer) {
   });
 }
 
-// ---------- Review submissions (placeholder hooks) ----------
+// ---------- Review submissions ----------
 const submitReviewBtn = document.getElementById("submit-review-btn");
 const reviewTitle = document.getElementById("review-title");
 const reviewBody = document.getElementById("review-body");
@@ -147,16 +162,18 @@ if (submitReviewBtn && reviewTitle && reviewBody) {
   submitReviewBtn.addEventListener("click", async () => {
     const title = reviewTitle.value.trim();
     const body = reviewBody.value.trim();
+
     if (!title || !body) {
       alert("Fill in both fields.");
       return;
     }
 
-    // Example insert (replace table name + columns with your real ones)
+    // Example insert (replace with your real table)
     /*
     const { error } = await supabaseClient
       .from("submissions")
       .insert({ title, body });
+
     if (error) {
       alert("Failed to submit.");
       return;
@@ -172,5 +189,3 @@ if (submitReviewBtn && reviewTitle && reviewBody) {
     reviewBody.value = "";
   });
 }
-
-// You can later wire adminSubmissions to Supabase with your own table.
