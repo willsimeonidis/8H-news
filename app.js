@@ -2,8 +2,7 @@
 // SUPABASE SETUP
 // --------------------------------------------------
 
-const supabaseUrl = "https://https://zjyqbddvrhkyewmdsilq.supabase.co/rest/v1/
-.co";
+const supabaseUrl = "https://zjyqbddvrhkyewmdsilq.supabase.co";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqeXFiZGR2cmhreWV3bWRzaWxxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2MTg3MDAsImV4cCI6MjEwMzE5NDcwMH0.VtZ-vS4Mv7AZDG_4NmQioAv6km93R0BKutpqIQxN5t0
 ";
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
