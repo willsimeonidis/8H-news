@@ -22,7 +22,16 @@
 
 <main>
   <h2>Magic 8-Ball</h2>
-  <p>Ask a question and get a chaotic answer.</p>
+  <p>Ask a question, click the ball, and let chaos decide.</p>
+
+  <input type="text" id="eight-question" placeholder="Type your question here">
+  <button id="eight-ask">Ask the 8-Ball</button>
+
+  <div id="eight-ball" class="eight-ball">
+    <div class="eight-inner">
+      <span id="eight-answer">?</span>
+    </div>
+  </div>
 </main>
 
 <script type="module" src="app.js"></script>
