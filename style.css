@@ -5,8 +5,6 @@
   --red: #8b1e1e;
   --gold: #a8791a;
   --rule: #c9c2b4;
-
-  /* Added for login popup + dashboard */
   --popup-bg: rgba(0,0,0,0.55);
   --popup-panel: #f7f3ec;
 }
@@ -235,6 +233,40 @@ body {
   font-size: 0.92rem;
 }
 
+.weather-box {
+  border: 2px solid var(--ink);
+  padding: 1.75rem;
+  margin-bottom: 2.5rem;
+  max-width: 420px;
+  text-align: center;
+}
+.weather-loading {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.weather-temp {
+  font-family: "Playfair Display", serif;
+  font-weight: 900;
+  font-size: 3.5rem;
+  line-height: 1;
+  margin: 0.5rem 0 0.25rem;
+}
+.weather-desc {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+}
+.weather-wind {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
 @media (max-width: 640px) {
   .grid { grid-template-columns: 1fr; }
   .masthead-top { font-size: 0.62rem; }
@@ -257,29 +289,3 @@ body {
 }
 .fine-print {
   font-size: 0.65rem !important;
-  opacity: 0.6;
-}
-
-/* ---------- Login popup (NEW) ---------- */
-.login-popup {
-  position: fixed;
-  inset: 0;
-  background: var(--popup-bg);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.login-dialog {
-  background: var(--popup-panel);
-  padding: 1.5rem;
-  border: 2px solid var(--ink);
-  border-radius: 4px;
-  max-width: 600px;
-  width: 90%;
-}
-
-.login-columns {
-  display: grid;
-  grid-template
