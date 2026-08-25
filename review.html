@@ -1,91 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>8H-News – Review & Submissions</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+<title>8H-News – Review & Submissions">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="page-review">
 
-  <nav class="navbar">
-    <div class="nav-left">
-      <a href="index.html" class="nav-link">Front Page</a>
-      <a href="weekly.html" class="nav-link">Weekly</a>
-      <a href="8ball.html" class="nav-link">8-Ball</a>
-      <a href="lore.html" class="nav-link">Lore</a>
-      <a href="weather.html" class="nav-link">Weather</a>
-      <a href="review.html" class="nav-link active">Review</a>
-      <a href="archive.html" class="nav-link">Archive</a>
-    </div>
-    <div class="nav-right">
-      <a href="#" id="nav-signin" class="nav-link nav-signin">Sign In</a>
-      <span id="nav-account" class="nav-account" style="display:none;"></span>
-    </div>
-  </nav>
+<body>
 
-  <main class="layout layout-split">
-    <section class="section">
-      <h2 class="hed">Submit a story</h2>
-      <p class="dek">Write your article and send it to the 8H‑News editors (you).</p>
+<div class="ticker"><div class="ticker-track">
+<span>Review</span><span>Submit Stories</span>
+</div></div>
 
-      <div class="form-block">
-        <label>Title</label>
-        <input type="text" id="review-title" placeholder="Story title">
+<header class="masthead">
+<div class="masthead-inner">
+<h1 class="title">8H<span>Review</span></h1>
+<p class="tagline">Submit your stories</p>
+<div class="masthead-bottom"><div class="rule"></div><div class="rule"></div></div>
+</div>
+</header>
 
-        <label>Body</label>
-        <textarea id="review-body" rows="6" placeholder="Write your story here…"></textarea>
+<nav class="navbar">
+<a href="index.html">Front Page</a>
+<a href="weekly.html">Weekly</a>
+<a href="8ball.html">8-Ball</a>
+<a href="lore.html">Lore</a>
+<a href="weather.html">Weather</a>
+<a href="review.html" class="active">Review</a>
+<a href="archive.html">Archive</a>
+<a href="#" id="nav-signin">Sign In</a>
+<span id="nav-account" style="display:none;"></span>
+</nav>
 
-        <button class="btn primary" id="submit-review-btn">Submit story</button>
-      </div>
-    </section>
+<main class="front-page">
 
-    <section class="section">
-      <h2 class="hed">Your submissions</h2>
-      <p class="dek">Everything you’ve sent in so far.</p>
-      <div id="user-submissions" class="card-list">
-        <!-- Filled by app.js -->
-      </div>
+<section class="section-head">
+<h2 class="section-title">Submit a Story</h2>
+<p class="dek">Write your article and send it in.</p>
+</section>
 
-      <h2 class="hed" style="margin-top:2rem;">Admin panel</h2>
-      <p class="dek">Visible only to <strong>will.simeonidis@gmail.com</strong>.</p>
-      <div id="admin-submissions" class="card-list">
-        <!-- Filled by app.js -->
-      </div>
+<div class="grid single-col">
+<div class="story">
+<label>Title</label>
+<input id="review-title" style="width:100%;padding:0.5rem;">
+<label>Body</label>
+<textarea id="review-body" rows="6" style="width:100%;padding:0.5rem;"></textarea>
+<button id="submit-review-btn">Submit story</button>
+</div>
+</div>
 
-      <button class="btn" id="logout-btn">Sign out</button>
-    </section>
-  </main>
+<section class="section-head">
+<h2 class="section-title">Your Submissions</h2>
+<p class="dek">Everything you've sent.</p>
+</section>
 
-  <!-- Login popup -->
-  <div id="login-popup" class="login-popup">
-    <div class="login-dialog">
-      <button class="login-close" id="login-later">×</button>
-      <h2 class="hed">Sign in to manage stories</h2>
-      <p class="dek">Log in or create an account to submit and review stories.</p>
+<div id="user-submissions" class="grid single-col"></div>
 
-      <div class="login-columns">
-        <form id="login-form" class="login-form">
-          <h3 class="hed-sm">Log in</h3>
-          <label>Email</label>
-          <input type="email" id="login-email" required>
-          <label>Password</label>
-          <input type="password" id="login-password" required>
-          <button type="submit" class="btn primary">Sign In</button>
-        </form>
+<section class="section-head">
+<h2 class="section-title">Admin Panel</h2>
+<p class="dek">Visible only to will.simeonidis@gmail.com</p>
+</section>
 
-        <form id="register-form" class="login-form">
-          <h3 class="hed-sm">Create account</h3>
-          <label>Email</label>
-          <input type="email" id="register-email" required>
-          <label>Password</label>
-          <input type="password" id="register-password" required>
-          <button type="submit" class="btn">Register</button>
-        </form>
-      </div>
-    </div>
-  </div>
+<div id="admin-submissions" class="grid single-col"></div>
 
-  <script type="module" src="app.js"></script>
+<button id="logout-btn">Sign out</button>
+
+</main>
+
+<footer class="site-footer">
+<p>© 2026 8H-News</p>
+<p class="fine-print">Made by Will</p>
+</footer>
+
+<script type="module" src="app.js"></script>
 </body>
 </html>
