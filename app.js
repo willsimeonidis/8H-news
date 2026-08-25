@@ -1,156 +1,123 @@
-/* ------------------------------
-   Supabase Client
------------------------------- */
+/* ------------------------------ */
+/* Supabase Client                */
+/* ------------------------------ */
 
-const SUPABASE_URL = "https://YOUR-PROJECT.supabase.co";
-const SUPABASE_KEY = "YOUR-ANON-KEY";
+const SUPABASE_URL = "https://zjyqbddvrhkyewmdsilq.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqeXFiZGR2cmhreWV3bWRzaWxxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2MTg3MDAsImV4cCI6MjEwMzE5NDcwMH0.VtZ-vS4Mv7AZDG_4NmQioAv6km93R0BKutpqIQxN5t0";
 
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+/* ------------------------------ */
+/* DOM Elements                   */
+/* ------------------------------ */
 
-/* ------------------------------
-   Navbar Elements
------------------------------- */
+const navSignin   = document.getElementById("nav-signin");
+const navAccount  = document.getElementById("nav-account");
 
-const navSignin = document.getElementById("nav-signin");
-const navAccount = document.getElementById("nav-account");
-
-
-/* ------------------------------
-   Popup Elements
------------------------------- */
-
-const loginPopup = document.getElementById("login-popup");
-const loginLater = document.getElementById("login-later");
-const loginForm = document.getElementById("login-form");
+const loginPopup  = document.getElementById("login-popup");
+const loginLater  = document.getElementById("login-later");
+const loginForm   = document.getElementById("login-form");
 const registerForm = document.getElementById("register-form");
 
-
-/* ------------------------------
-   Popup Controls
------------------------------- */
+/* ------------------------------ */
+/* Popup Controls                 */
+/* ------------------------------ */
 
 function openLoginPopup() {
-  if (loginPopup) loginPopup.style.display = "flex";
+  loginPopup.style.display = "block";
 }
 
 function closeLoginPopup() {
-  if (loginPopup) loginPopup.style.display = "none";
+  loginPopup.style.display = "none";
 }
 
+/* ------------------------------ */
+/* Navbar Logic                   */
+/* ------------------------------ */
 
-/* ------------------------------
-   Auto Popup on Index Page
------------------------------- */
+async function refreshUser() {
+  const { data: { user } } = await supabase.auth.getUser();
 
-window.addEventListener("DOMContentLoaded", () => {
-
-  const path = window.location.pathname;
-
-  const isIndex =
-    path.endsWith("index.html") ||
-    path.endsWith("/8H-news/") ||
-    path.endsWith("/8H-news");
-
-  if (isIndex && !sessionStorage.getItem("dismissedLoginPopup")) {
-    if (loginPopup) loginPopup.style.display = "flex";
+  if (user) {
+    navSignin.style.display = "none";
+    navAccount.style.display = "inline";
+    navAccount.textContent = user.email;
+  } else {
+    navSignin.style.display = "inline";
+    navAccount.style.display = "none";
   }
+}
 
-  if (loginLater) {
-    loginLater.addEventListener("click", () => {
-      closeLoginPopup();
-      sessionStorage.setItem("dismissedLoginPopup", "true");
-    });
+/* ------------------------------ */
+/* Login Form                     */
+/* ------------------------------ */
+
+loginForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("login-email").value;
+  const password = document.getElementById("login-password").value;
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    alert("Login failed: " + error.message);
+  } else {
+    closeLoginPopup();
+    refreshUser();
   }
 });
 
+/* ------------------------------ */
+/* Register Form                  */
+/* ------------------------------ */
 
-/* ------------------------------
-   Navbar Sign In Button
------------------------------- */
+registerForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-if (navSignin) {
-  navSignin.addEventListener("click", (e) => {
-    e.preventDefault();
-    openLoginPopup();
+  const email = document.getElementById("register-email").value;
+  const password = document.getElementById("register-password").value;
+
+  const { error } = await supabase.auth.signUp({
+    email,
+    password
   });
-}
 
-
-/* ------------------------------
-   Refresh User State
------------------------------- */
-
-async function refreshUser() {
-  const { data } = await supabaseClient.auth.getUser();
-  const user = data?.user;
-
-  if (user) {
-    navAccount.style.display = "inline-block";
-    navAccount.textContent = user.email;
-    navSignin.textContent = "Account";
+  if (error) {
+    alert("Registration failed: " + error.message);
   } else {
-    navAccount.style.display = "none";
-    navSignin.textContent = "Sign In";
+    alert("Account created! Please log in.");
   }
-}
+});
 
+/* ------------------------------ */
+/* Sign In Later                  */
+/* ------------------------------ */
 
-/* ------------------------------
-   Login Form
------------------------------- */
+loginLater.addEventListener("click", () => {
+  closeLoginPopup();
+});
 
-if (loginForm) {
-  loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+/* ------------------------------ */
+/* Require Login for Review Page  */
+/* ------------------------------ */
 
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
+if (window.location.pathname.includes("review.html")) {
+  (async () => {
+    const { data: { user } } = await supabase.auth.getUser();
 
-    const { error } = await supabaseClient.auth.signInWithPassword({
-      email,
-      password
-    });
-
-    if (error) {
-      alert("Login failed");
-      return;
+    if (!user) {
+      openLoginPopup();
     }
-
-    await refreshUser();
-    closeLoginPopup();
-  });
+  })();
 }
 
-
-/* ------------------------------
-   Register Form
------------------------------- */
-
-if (registerForm) {
-  registerForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const email = document.getElementById("register-email").value;
-    const password = document.getElementById("register-password").value;
-
-    const { error } = await supabaseClient.auth.signUp({
-      email,
-      password
-    });
-
-    if (error) {
-      alert("Registration failed");
-      return;
-    }
-
-    alert("Check your email to confirm your account.");
-  });
-}
-
-
-/* ------------------------------
-   Initialize User State
------------------------------- */
+/* ------------------------------ */
+/* Init                           */
+/* ------------------------------ */
 
 refreshUser();
+navSignin.addEventListener("click", openLoginPopup);
