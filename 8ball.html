@@ -1,39 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>8-Ball – 8H-News</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+<title>8H Times — 8‑Ball</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>8‑BALL UPDATE: predictions now 12% more accurate</span>
+    <span>EXCLUSIVE: the 8‑Ball refuses to answer maths questions</span>
+    <span>BREAKING: students ask the 8‑Ball for life advice</span>
+    <span>8‑BALL UPDATE: predictions now 12% more accurate</span>
+    <span>EXCLUSIVE: the 8‑Ball refuses to answer maths questions</span>
+    <span>BREAKING: students ask the 8‑Ball for life advice</span>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-top">
+      <span class="dateline" id="dateline">MONDAY EDITION</span>
+      <span class="dateline">EST. 2026</span>
+      <span class="dateline">NO. 004</span>
+    </div>
+    <h1 class="title">8H <span>Times</span></h1>
+    <p class="tagline">Independent news, powered by chaos.</p>
+  </div>
+</header>
+
+<!-- NAVBAR -->
 <nav class="navbar">
-  <a href="index.html">Front Page</a>
-  <a href="weekly.html">Weekly</a>
-  <a href="8ball.html" class="active">8-Ball</a>
-  <a href="lore.html">Lore</a>
-  <a href="weather.html">Weather</a>
-  <a href="review.html">Review</a>
-  <a href="archive.html">Archive</a>
-  <a href="#" id="nav-signin">Sign In</a>
+  <a href="index.html">FRONT PAGE</a>
+  <a href="weekly.html">WEEKLY</a>
+  <a href="8ball.html" class="active">8‑BALL</a>
+  <a href="lore.html">LORE</a>
+  <a href="weather.html">WEATHER</a>
+  <a href="archive.html">ARCHIVE</a>
+  <a href="review.html">REVIEW</a>
+  <a href="#" id="nav-signin">SIGN IN</a>
   <span id="nav-account" style="display:none;"></span>
 </nav>
 
-<main>
-  <h2>Magic 8-Ball</h2>
-  <p>Ask a question, click the ball, and let chaos decide.</p>
+<!-- CONTENT -->
+<main class="front-page">
 
-  <input type="text" id="eight-question" placeholder="Type your question here">
-  <button id="eight-ask">Ask the 8-Ball</button>
+  <section class="section-head">
+    <span class="kicker">SECTION · 8‑BALL</span>
+    <h2 class="section-title">Ask the 8‑Ball</h2>
+    <p class="dek">The legendary oracle of Year 8. Ask a question, tap the ball, receive wisdom.</p>
+  </section>
 
-  <div id="eight-ball" class="eight-ball">
-    <div class="eight-inner">
-      <span id="eight-answer">?</span>
-    </div>
+  <div class="grid single-col">
+
+    <article class="story">
+      <h3>Consult the Oracle</h3>
+      <p class="dek">Type your question below, then tap the 8‑Ball to reveal your fate.</p>
+
+      <label class="kicker">YOUR QUESTION</label>
+      <input id="eight-question" type="text" class="eight-input" placeholder="e.g., Will the canteen have garlic bread today?">
+
+      <div class="eight-ball-container">
+        <div id="eight-ball" class="eight-ball">
+          <div class="eight-window">
+            <span id="eight-answer" class="eight-text">—</span>
+          </div>
+        </div>
+      </div>
+
+      <button id="eight-ask" class="eight-btn">ASK THE 8‑BALL</button>
+
+    </article>
+
   </div>
+
 </main>
 
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span class="rule"></span>
+  <p>8H Times — where the news is fake, but the friendship is real.</p>
+  <p class="fine-print">Sources protected. Headlines final. Corrections rare.</p>
+</footer>
+
+<!-- LOGIN POPUP -->
+<div id="login-popup" class="login-popup" style="display:none;">
+  <div class="login-dialog">
+    <button id="login-later" class="close-btn">Sign in later</button>
+
+    <h2>Sign in to 8H Times</h2>
+    <p>Log in or create an account.</p>
+
+    <div class="login-columns">
+      <form id="login-form" class="login-form">
+        <h3>Log in</h3>
+        <label>Email</label>
+        <input type="email" id="login-email" required>
+
+        <label>Password</label>
+        <input type="password" id="login-password" required>
+
+        <button type="submit">Sign In</button>
+      </form>
+
+      <form id="register-form" class="login-form">
+        <h3>Create account</h3>
+        <label>Email</label>
+        <input type="email" id="register-email" required>
+
+        <label>Password</label>
+        <input type="password" id="register-password" required>
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+</div>
+
 <script type="module" src="app.js"></script>
+<script>
+  const days = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
+  const d = new Date();
+  document.getElementById("dateline").textContent = days[d.getDay()] + " EDITION";
+</script>
+
 </body>
 </html>
