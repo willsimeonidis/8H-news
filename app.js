@@ -3,8 +3,8 @@
 // --------------------------------------------------
 
 const supabaseUrl = "https://zjyqbddvrhkyewmdsilq.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqeXFiZGR2cmhreWV3bWRzaWxxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2MTg3MDAsImV4cCI6MjEwMzE5NDcwMH0.VtZ-vS4Mv7AZDG_4NmQioAv6km93R0BKutpqIQxN5t0
-";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqeXFiZGR2cmhreWV3bWRzaWxxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2MTg3MDAsImV4cCI6MjEwMzE5NDcwMH0.VtZ-vS4Mv7AZDG_4NmQioAv6km93R0BKutpqIQxN5t0";
+
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 // --------------------------------------------------
@@ -223,30 +223,17 @@ const responses = [
   "Sources decline to comment."
 ];
 
-if (eightAsk) {
-  eightAsk.addEventListener("click", () => {
-    const q = document.getElementById("eight-question").value.trim();
+function eightBallReply() {
+  const q = document.getElementById("eight-question").value.trim();
 
-    if (q.length === 0) {
-      eightAnswer.textContent = "Ask a question.";
-      return;
-    }
+  if (q.length === 0) {
+    eightAnswer.textContent = "Ask a question.";
+    return;
+  }
 
-    const r = responses[Math.floor(Math.random() * responses.length)];
-    eightAnswer.textContent = r;
-  });
+  const r = responses[Math.floor(Math.random() * responses.length)];
+  eightAnswer.textContent = r;
 }
 
-if (eightBall) {
-  eightBall.addEventListener("click", () => {
-    const q = document.getElementById("eight-question").value.trim();
-
-    if (q.length === 0) {
-      eightAnswer.textContent = "Ask a question.";
-      return;
-    }
-
-    const r = responses[Math.floor(Math.random() * responses.length)];
-    eightAnswer.textContent = r;
-  });
-}
+if (eightAsk) eightAsk.addEventListener("click", eightBallReply);
+if (eightBall) eightBall.addEventListener("click", eightBallReply);
