@@ -1,151 +1,109 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>8H Times — Independent News</title>
-<link rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>8H-News – Front Page</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body class="page-front">
 
-<div class="ticker">
-  <div class="ticker-track">
-    <span>DEVELOPING: sources close to the situation decline to comment, again</span>
-    <span>EXCLUSIVE: nobody asked, we reported anyway</span>
-    <span>WEATHER: 100% chance of chaos by third period</span>
-    <span>DEVELOPING: sources close to the situation decline to comment, again</span>
-    <span>EXCLUSIVE: nobody asked, we reported anyway</span>
-    <span>WEATHER: 100% chance of chaos by third period</span>
+  <div class="ticker">
+    <span class="ticker-label">Breaking</span>
+    <span class="ticker-text">Add your top headline here…</span>
   </div>
-</div>
 
-<header class="masthead">
-  <div class="masthead-inner">
-    <div class="masthead-top">
-      <span class="dateline" id="dateline">MONDAY EDITION</span>
-      <span class="dateline">EST. 2026</span>
-      <span class="dateline">NO. 001</span>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <h1 class="site-title">8H-News</h1>
+      <p class="site-tagline">The official chaos of Year 8, now in print.</p>
     </div>
-    <h1 class="title">8H <span>Times</span></h1>
-    <p class="tagline">Independent news, powered by chaos.</p>
-    <div class="masthead-bottom">
-      <span class="rule"></span>
-      <p class="desc">8H Times is an independent news outlet delivering fast, unfiltered coverage of events as they unfold. We report the stories that matter, backed by sources who prefer to stay anonymous. No spin, no agenda — just the facts, presented the way they happened. Headlines are final. Corrections are rare.</p>
-      <span class="rule"></span>
+  </header>
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="nav-link active">Front Page</a>
+      <a href="weekly.html" class="nav-link">Weekly</a>
+      <a href="8ball.html" class="nav-link">8-Ball</a>
+      <a href="lore.html" class="nav-link">Lore</a>
+      <a href="weather.html" class="nav-link">Weather</a>
+      <a href="review.html" class="nav-link">Review</a>
+      <a href="archive.html" class="nav-link">Archive</a>
+    </div>
+    <div class="nav-right">
+      <a href="#" id="nav-signin" class="nav-link nav-signin">Sign In</a>
+      <span id="nav-account" class="nav-account" style="display:none;"></span>
+    </div>
+  </nav>
+
+  <main class="layout">
+    <section class="hero">
+      <span class="kicker">Top Story</span>
+      <h2 class="hed">Your main headline goes here</h2>
+      <p class="dek">Use this space for a short summary of the biggest story. You’ll paste your real text later.</p>
+    </section>
+
+    <section class="grid grid-3">
+      <article class="story-card">
+        <span class="kicker">News</span>
+        <h3 class="hed-sm">Story headline</h3>
+        <p class="dek">Short description of the story. Replace with your content.</p>
+      </article>
+      <article class="story-card">
+        <span class="kicker">School</span>
+        <h3 class="hed-sm">Story headline</h3>
+        <p class="dek">Short description of the story. Replace with your content.</p>
+      </article>
+      <article class="story-card">
+        <span class="kicker">Opinion</span>
+        <h3 class="hed-sm">Story headline</h3>
+        <p class="dek">Short description of the story. Replace with your content.</p>
+      </article>
+    </section>
+
+    <section class="grid grid-2">
+      <article class="story-card">
+        <span class="kicker">Feature</span>
+        <h3 class="hed-sm">Longer feature story</h3>
+        <p class="dek">Use this for your bigger pieces. Paste your text later.</p>
+      </article>
+      <article class="story-card">
+        <span class="kicker">Announcements</span>
+        <h3 class="hed-sm">Important updates</h3>
+        <p class="dek">Timetables, events, or anything important.</p>
+      </article>
+    </section>
+  </main>
+
+  <!-- Login popup -->
+  <div id="login-popup" class="login-popup">
+    <div class="login-dialog">
+      <button class="login-close" id="login-later">×</button>
+      <h2 class="hed">Sign in to 8H-News</h2>
+      <p class="dek">Log in or create an account to submit stories and see your dashboard.</p>
+
+      <div class="login-columns">
+        <form id="login-form" class="login-form">
+          <h3 class="hed-sm">Log in</h3>
+          <label>Email</label>
+          <input type="email" id="login-email" required>
+          <label>Password</label>
+          <input type="password" id="login-password" required>
+          <button type="submit" class="btn primary">Sign In</button>
+        </form>
+
+        <form id="register-form" class="login-form">
+          <h3 class="hed-sm">Create account</h3>
+          <label>Email</label>
+          <input type="email" id="register-email" required>
+          <label>Password</label>
+          <input type="password" id="register-password" required>
+          <button type="submit" class="btn">Register</button>
+        </form>
+      </div>
     </div>
   </div>
-</header>
 
-<nav class="navbar">
-  <a href="index.html" class="active">Front Page</a>
-  <a href="breaking.html">Weekly</a>
-  <a href="sports.html">8‑Ball</a>
-  <a href="opinion.html">LORE OF FABI</a>
-  <a href="weather.html">Weather</a>
-  <a href="archive.html">Archive</a>
-</nav>
-
-<main class="front-page">
-
-  <section class="lead-story">
-    <div class="stamp">UNVERIFIED</div>
-    <span class="kicker">BREAKING</span>
-    <h2>TODAY’S HEADLINE: The Sudden, Tragic, and Completely Preventable Downfall of Awa</h2>
-    <p class="byline">By Our Staff &nbsp;·&nbsp; Front Page</p>
-    <p class="dek">Awa’s downfall hit Bathurst High hard today after he slipped on a puddle he accidentally made while “testing water pressure,” instantly destroying his chopped‑haircut confidence. 
-Witnesses say the fall was so dramatic it officially ended his “single and ready to mingle” era on the spot.</p>
-  </section>
-
-  <div class="grid">
-
-    <article class="story">
-      <span class="kicker">Haircut</span>
-      <h3>“Harrison Woodrow’s Hairline Now Officially Classified as a School Hazard”</h3>
-      <p class="dek">Bathurst High has entered DEFCON 3 after student Harrison Woodrow’s aggressively chopped hairline began repelling classmates at a measurable rate, creating what experts are calling a “social blast radius.” Witnesses report that standing too close to Harrison causes sudden confusion, emotional instability, and an overwhelming urge to step back at least two metres.
-Students claim the hairline is so sharp it could slice through reinforced steel, while others insist it’s “crooked enough to bend reality.” One anonymous source described it as “a geographical landmark,” while another said it “looks like it was drawn by someone using their left hand for the first time.”
-But the chaos doesn’t stop at the haircut.
-Harrison has allegedly been throwing comments around the classroom like dodgeballs, firing off unsolicited roasts, unnecessary beef, and fat‑shaming remarks with the confidence of a man twice his height. Despite being compact enough to fit inside a locker, Harrison’s noise output has reached levels normally reserved for fire alarms and malfunctioning microwaves.
-Teachers report that Harrison’s energy is “relentless,” “borderline radioactive,” and “capable of powering a small village if properly contained.” Students describe him as “annoying in a way that feels scientifically engineered,” “a walking notification sound,” and “the human version of a mosquito that learned English.”
-School officials are now considering placing warning signs around Harrison’s desk, advising students to maintain a safe distance and avoid direct eye contact with the hairline.
-The situation is ongoing. More updates as the chaos unfolds.</p>
-    </article>
-    
-    <article class="story">
-      <span class="kicker">Birds</span>
-      <h3>“Year 8 Student Enters Fight‑or‑Flight Mode After Plovers Declare War”</h3>
-      <p class="dek">Bathurst High’s sport period was thrown into absolute chaos today as student Cody Whalan experienced what experts are calling “the most dramatic wildlife encounter since the Great Possum Incident of 2024.”
-Witnesses report Cody was running around the oval like a panicked little girl, arms flailing, legs kicking, voice cracking, as he attempted to escape a pair of highly territorial plovers who had apparently decided he was a threat to national security.
-Students claim Cody activated full sprint mode, reaching speeds never before recorded in Year 8 history. One bystander described him as “moving like a Roblox character with low battery,” while another said he looked “like he was trying to outrun his own shadow.”
-But the highlight of the event came when Cody, breathless and shaking, delivered his now‑iconic quote:
-        
-“I was 2 cm away from getting mauled by a big scary bird, it was a near‑death experience.”
-        
-Sources confirm the plovers were not actually 2 cm away, but Cody insists the birds were “basically on top of him,” “ready to end his bloodline,” and “trained by the government.”
-Teachers attempted to intervene, but Cody was already halfway across the field, running like he was escaping a horror movie villain. Several students reported seeing him leap over a bench, dodge a water bottle, and perform a dramatic slide that served absolutely no purpose.
-The plovers eventually lost interest, but Cody continued running for an additional 45 seconds “just in case.”
-Bathurst High officials have since raised the wildlife threat level to “Cody‑Sensitive.”</p>
-    </article>
-    
-    <article class="story">
-      <span class="kicker">Mingle</span>
-      <h3>“Single, Ready to Mingle, and Possibly Interested in Awa (Sources Unconfirmed)”</h3>
-      <p class="dek">Isaac Coello, Bathurst High’s smooth‑skinned menace, has officially declared himself single and ready to mingle. Students report he made this announcement while dramatically leaning against a locker like he was in a Netflix teen drama.
-In a shocking twist, Isaac has been playfully linked to Awa after saying, “I’d date him if he stopped drinking toilet water.” Awa reportedly responded, “Bro what.”
-Isaac’s darker skin tone has earned him the nickname “The Melanin Machine,” and he uses it to his advantage by claiming he “absorbs sunlight more efficiently than the rest of the staff.”
-Experts say he is 100% trouble, 0% committed, and 200% comedic gold.</p>
-    </article>
-
-    <article class="story">
-      <span class="kicker">Splashdown</span>
-      <h3>“The Chopped‑Haircut Aquatic Menace”</h3>
-      <p class="dek">Bathurst High’s most roastable legend, Te Awanui Cassidy McGill, has once again survived another day of friendly bullying from literally everyone he knows. Despite being the group’s designated punching bag, Awa remains a god‑tier swimmer, slicing through water like a dolphin with tax problems.
-His chopped haircut has been scientifically proven to increase speed by 0.0000003%, which Awa insists is “basically Olympic level.”
-Rumors say he’s being scouted by the school’s unofficial dating committee, but sources confirm he’s still recovering from the toilet‑water incident.</p>
-    </article>
-
-    <article class="story">
-      <span class="kicker">Beardling</span>
-      <h3>“Short King With Beard Confuses Year 8 Biology”</h3>
-      <p class="dek">Brody Miller, Bathurst High’s shortest staff member, has once again shocked the school by maintaining a full adult beard despite being in Year 8.
-Students claim he looks like a 35‑year‑old accountant trapped in a child’s body. Teachers have asked him to show ID multiple times.
-Brody’s height has become a school legend — he once tried to reach the top shelf and disappeared behind a desk for three minutes.
-Despite his size, Brody’s beard gives him the authority of a medieval king.</p>
-    </article>
-
-    <article class="story">
-      <span class="kicker">Tsundere</span>
-      <h3>“The Gooner Tsundere Enigma”</h3>
-      <p class="dek">Alex Scanlon, Bathurst High’s resident “little bit special” gooner, has once again been spotted arguing with himself in the hallway like a tsundere anime character.
-Alex is known for saying things like “I don’t care” while clearly caring deeply. He denies everything, blushes at nothing, and supports Arsenal with the passion of a man who hasn’t slept since 2016.
-Students describe him as “chaotic neutral,” “emotionally unstable in a funny way,” and “the only tsundere in Bathurst.</p>
-    </article>
-
-  </div>
-</main>
-
-<footer class="site-footer">
-  <span class="rule"></span>
-  <p>8H Times — where the news is fake, but the friendship is real.</p>
-  <p class="fine-print">Sources protected. Headlines final. Corrections rare.
-  This website is made purely for jokes, fun, and light‑hearted entertainment. Everything here is meant for humour and educational creativity only — nothing is intended to bully, target, or harm anyone in any way.</p>
-</footer>
-
-<script>
-  const monthsShort = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
-
-  const d = new Date();
-
-  const dayNumber = d.getDate();
-  const monthShort = monthsShort[d.getMonth()];
-  const year = d.getFullYear();
-
-  document.getElementById("dateline").textContent =
-    `${dayNumber} ${monthShort} ${year}`;
-</script>
-
+  <script type="module" src="app.js"></script>
 </body>
 </html>
