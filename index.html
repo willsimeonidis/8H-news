@@ -1,64 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>8H-News – Front Page</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+<title>8H Times — Front Page</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>DEVELOPING: sources close to the situation decline to comment, again</span>
+    <span>EXCLUSIVE: nobody asked, we reported anyway</span>
+    <span>BREAKING: 8H Times now fully operational</span>
+    <span>DEVELOPING: sources close to the situation decline to comment, again</span>
+    <span>EXCLUSIVE: nobody asked, we reported anyway</span>
+    <span>BREAKING: 8H Times now fully operational</span>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
 <header class="masthead">
-  <h1 class="title">8H<span>News</span></h1>
-  <p class="tagline">Front Page</p>
+  <div class="masthead-inner">
+    <div class="masthead-top">
+      <span class="dateline" id="dateline">MONDAY EDITION</span>
+      <span class="dateline">EST. 2026</span>
+      <span class="dateline">NO. 001</span>
+    </div>
+    <h1 class="title">8H <span>Times</span></h1>
+    <p class="tagline">Independent news, powered by chaos.</p>
+  </div>
 </header>
 
+<!-- NAVBAR -->
 <nav class="navbar">
-  <a href="index.html" class="active">Front Page</a>
-  <a href="weekly.html">Weekly</a>
-  <a href="8ball.html">8-Ball</a>
-  <a href="lore.html">Lore</a>
-  <a href="weather.html">Weather</a>
-  <a href="review.html">Review</a>
-  <a href="archive.html">Archive</a>
-  <a href="#" id="nav-signin">Sign In</a>
+  <a href="index.html" class="active">FRONT PAGE</a>
+  <a href="weekly.html">WEEKLY</a>
+  <a href="8ball.html">8‑BALL</a>
+  <a href="lore.html">LORE</a>
+  <a href="weather.html">WEATHER</a>
+  <a href="archive.html">ARCHIVE</a>
+  <a href="review.html">REVIEW</a>
+  <a href="#" id="nav-signin">SIGN IN</a>
   <span id="nav-account" style="display:none;"></span>
 </nav>
 
-<main>
-  <h2>Top Stories</h2>
+<!-- CONTENT -->
+<main class="front-page">
 
-  <article>
-    <h3>Chromebook Vanishes During Maths</h3>
-    <p>A Year 8 Chromebook disappeared mid‑lesson. Witnesses blame “mysterious hallway energy.”</p>
-  </article>
+  <section class="section-head">
+    <span class="kicker">SECTION · FRONT PAGE</span>
+    <h2 class="section-title">Top Stories</h2>
+    <p class="dek">The latest chaos from Year 8 — curated, exaggerated, and occasionally true.</p>
+  </section>
 
-  <article>
-    <h3>Canteen Line Reaches Legendary Length</h3>
-    <p>Students report a 15‑minute wait for garlic bread. Economists call it “peak demand.”</p>
-  </article>
+  <div class="grid single-col">
 
-  <article>
-    <h3>Rainharp WiFi Attempts to Behave</h3>
-    <p>For three minutes, the WiFi worked perfectly. Staff are investigating what went wrong.</p>
-  </article>
+    <article class="story">
+      <h3>Chromebook Vanishes During Maths</h3>
+      <p class="dek">A Year 8 Chromebook disappeared mid‑lesson. Witnesses blame “mysterious hallway energy.”</p>
+    </article>
 
-  <article>
-    <h3>Classroom Chair Makes Loudest Noise Yet</h3>
-    <p>One chair screech echoed through the entire block. No one admits to sitting in it.</p>
-  </article>
+    <article class="story">
+      <h3>Canteen Line Reaches Legendary Length</h3>
+      <p class="dek">Students report a 15‑minute wait for garlic bread. Economists call it “peak demand.”</p>
+    </article>
+
+    <article class="story">
+      <h3>Rainharp WiFi Attempts to Behave</h3>
+      <p class="dek">For three minutes, the WiFi worked perfectly. Staff are investigating what went wrong.</p>
+    </article>
+
+    <article class="story">
+      <h3>Classroom Chair Makes Loudest Noise Yet</h3>
+      <p class="dek">One chair screech echoed through the entire block. No one admits to sitting in it.</p>
+    </article>
+
+  </div>
+
 </main>
 
+<!-- FOOTER -->
 <footer class="site-footer">
-  <p>© 2026 8H-News – Made by Will</p>
+  <span class="rule"></span>
+  <p>8H Times — where the news is fake, but the friendship is real.</p>
+  <p class="fine-print">Sources protected. Headlines final. Corrections rare.</p>
 </footer>
 
-<!-- Login popup -->
+<!-- LOGIN POPUP -->
 <div id="login-popup" class="login-popup" style="display:none;">
   <div class="login-dialog">
     <button id="login-later" class="close-btn">Sign in later</button>
 
-    <h2>Sign in to 8H-News</h2>
+    <h2>Sign in to 8H Times</h2>
     <p>Log in or create an account.</p>
 
     <div class="login-columns">
@@ -88,5 +126,11 @@
 </div>
 
 <script type="module" src="app.js"></script>
+<script>
+  const days = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
+  const d = new Date();
+  document.getElementById("dateline").textContent = days[d.getDay()] + " EDITION";
+</script>
+
 </body>
 </html>
