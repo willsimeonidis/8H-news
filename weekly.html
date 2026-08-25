@@ -1,49 +1,146 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Weekly – 8H-News</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+<title>8H Times — Weekly</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>WEEKLY REPORT: hallway chaos reaches new highs</span>
+    <span>EXCLUSIVE: someone lost their Chromebook again</span>
+    <span>DEVELOPING: teachers still confused after Tuesday</span>
+    <span>WEEKLY REPORT: hallway chaos reaches new highs</span>
+    <span>EXCLUSIVE: someone lost their Chromebook again</span>
+    <span>DEVELOPING: teachers still confused after Tuesday</span>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-top">
+      <span class="dateline" id="dateline">MONDAY EDITION</span>
+      <span class="dateline">EST. 2026</span>
+      <span class="dateline">NO. 002</span>
+    </div>
+    <h1 class="title">8H <span>Times</span></h1>
+    <p class="tagline">Independent news, powered by chaos.</p>
+  </div>
+</header>
+
+<!-- NAVBAR -->
 <nav class="navbar">
-  <a href="index.html">Front Page</a>
-  <a href="weekly.html" class="active">Weekly</a>
-  <a href="8ball.html">8-Ball</a>
-  <a href="lore.html">Lore</a>
-  <a href="weather.html">Weather</a>
-  <a href="review.html">Review</a>
-  <a href="archive.html">Archive</a>
-  <a href="#" id="nav-signin">Sign In</a>
+  <a href="index.html">FRONT PAGE</a>
+  <a href="weekly.html" class="active">WEEKLY</a>
+  <a href="8ball.html">8‑BALL</a>
+  <a href="lore.html">LORE</a>
+  <a href="weather.html">WEATHER</a>
+  <a href="archive.html">ARCHIVE</a>
+  <a href="review.html">REVIEW</a>
+  <a href="#" id="nav-signin">SIGN IN</a>
   <span id="nav-account" style="display:none;"></span>
 </nav>
 
-<main>
-  <h2>This Week at Bathurst High</h2>
+<!-- CONTENT -->
+<main class="front-page">
 
-  <article>
-    <h3>Monday: Surprise Locker Inspection</h3>
-    <p>Teachers opened random lockers. They found three bananas, one sock, and zero textbooks.</p>
-  </article>
+  <section class="section-head">
+    <span class="kicker">SECTION · WEEKLY</span>
+    <h2 class="section-title">This Week at Bathurst High</h2>
+    <p class="dek">A day‑by‑day breakdown of the latest Year 8 events, incidents, and mysteries.</p>
+  </section>
 
-  <article>
-    <h3>Tuesday: Group Project Chaos</h3>
-    <p>Four students claimed they did “all the work.” None of them opened the document.</p>
-  </article>
+  <div class="grid single-col">
 
-  <article>
-    <h3>Wednesday: Silent Reading Not So Silent</h3>
-    <p>Someone’s book fell off the desk. The noise was rated 8/10 on the chaos scale.</p>
-  </article>
+    <article class="story">
+      <span class="kicker">MONDAY</span>
+      <h3>Surprise Locker Inspection</h3>
+      <p class="dek">Teachers opened random lockers. They found three bananas, one sock, and zero textbooks.</p>
+    </article>
 
-  <article>
-    <h3>Thursday: PE Ball Escapes</h3>
-    <p>A stray ball rolled into another class. It was returned with a note saying “Nice shot.”</p>
-  </article>
+    <article class="story">
+      <span class="kicker">TUESDAY</span>
+      <h3>Group Project Chaos</h3>
+      <p class="dek">Four students claimed they did “all the work.” None of them opened the document.</p>
+    </article>
+
+    <article class="story">
+      <span class="kicker">WEDNESDAY</span>
+      <h3>Silent Reading Not So Silent</h3>
+      <p class="dek">Someone’s book fell off the desk. The noise was rated 8/10 on the chaos scale.</p>
+    </article>
+
+    <article class="story">
+      <span class="kicker">THURSDAY</span>
+      <h3>PE Ball Escapes</h3>
+      <p class="dek">A stray ball rolled into another class. It was returned with a note saying “Nice shot.”</p>
+    </article>
+
+    <article class="story">
+      <span class="kicker">FRIDAY</span>
+      <h3>Canteen Garlic Bread Shortage</h3>
+      <p class="dek">Students reported emotional damage after garlic bread sold out in under 4 minutes.</p>
+    </article>
+
+  </div>
+
 </main>
 
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span class="rule"></span>
+  <p>8H Times — where the news is fake, but the friendship is real.</p>
+  <p class="fine-print">Sources protected. Headlines final. Corrections rare.</p>
+</footer>
+
+<!-- LOGIN POPUP -->
+<div id="login-popup" class="login-popup" style="display:none;">
+  <div class="login-dialog">
+    <button id="login-later" class="close-btn">Sign in later</button>
+
+    <h2>Sign in to 8H Times</h2>
+    <p>Log in or create an account.</p>
+
+    <div class="login-columns">
+      <form id="login-form" class="login-form">
+        <h3>Log in</h3>
+        <label>Email</label>
+        <input type="email" id="login-email" required>
+
+        <label>Password</label>
+        <input type="password" id="login-password" required>
+
+        <button type="submit">Sign In</button>
+      </form>
+
+      <form id="register-form" class="login-form">
+        <h3>Create account</h3>
+        <label>Email</label>
+        <input type="email" id="register-email" required>
+
+        <label>Password</label>
+        <input type="password" id="register-password" required>
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+</div>
+
 <script type="module" src="app.js"></script>
+<script>
+  const days = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
+  const d = new Date();
+  document.getElementById("dateline").textContent = days[d.getDay()] + " EDITION";
+</script>
+
 </body>
 </html>
