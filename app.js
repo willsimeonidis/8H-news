@@ -1,220 +1,176 @@
-// ---------- Supabase Setup ----------
-const SUPABASE_URL = "https://zjyqbddvrhkyewmdsilq.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqeXFiZGR2cmhreWV3bWRzaWxxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2MTg3MDAsImV4cCI6MjEwMzE5NDcwMH0.VtZ-vS4Mv7AZDG_4NmQioAv6km93R0BKutpqIQxN5t0";
+// ---------- Supabase client ----------
+const SUPABASE_URL = "https://YOUR-PROJECT.supabase.co";
+const SUPABASE_KEY = "YOUR-ANON-KEY";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const ADMIN_EMAIL = "will.simeonidis@gmail.com";
+// ---------- Elements ----------
+const navSignin = document.getElementById("nav-signin");
+const navAccount = document.getElementById("nav-account");
+const loginPopup = document.getElementById("login-popup");
+const loginLater = document.getElementById("login-later");
+const loginForm = document.getElementById("login-form");
+const registerForm = document.getElementById("register-form");
+const logoutBtn = document.getElementById("logout-btn");
 
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-// ---------- DOM Helper ----------
-function $(id) {
-  return document.getElementById(id);
-}
-
-// ---------- Popup ----------
+// ---------- Show/hide popup ----------
 function openLoginPopup() {
-  const popup = $("login-popup");
-  if (popup) popup.style.display = "flex";
+  if (loginPopup) loginPopup.style.display = "flex";
 }
 function closeLoginPopup() {
-  const popup = $("login-popup");
-  if (popup) popup.style.display = "none";
+  if (loginPopup) loginPopup.style.display = "none";
 }
 
-// ---------- Auth ----------
-async function registerUser(email, password) {
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password
-  });
-  if (error) throw error;
-  return data;
-}
-
-async function loginUser(email, password) {
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password
-  });
-  if (error) throw error;
-  return data;
-}
-
-async function logoutUser() {
-  await supabase.auth.signOut();
-}
-
-// ---------- Submissions ----------
-async function submitReview(title, body) {
-  const { data: user } = await supabase.auth.getUser();
-  if (!user.user) {
-    alert("You must be signed in.");
-    return;
-  }
-
-  const { error } = await supabase
-    .from("submissions")
-    .insert({
-      user_id: user.user.id,
-      title,
-      body,
-      status: "pending"
-    });
-
-  if (error) {
-    alert("Error submitting: " + error.message);
-    return;
-  }
-
-  alert("Submitted!");
-  loadUserSubmissions();
-}
-
-// ---------- Load user submissions ----------
-async function loadUserSubmissions() {
-  const list = $("user-submissions");
-  if (!list) return;
-
-  const { data: user } = await supabase.auth.getUser();
-  if (!user.user) return;
-
-  const { data, error } = await supabase
-    .from("submissions")
-    .select("*")
-    .eq("user_id", user.user.id)
-    .order("created_at", { ascending: false });
-
-  list.innerHTML = "";
-
-  if (error || !data.length) {
-    list.innerHTML = "<p class='dek'>No submissions yet.</p>";
-    return;
-  }
-
-  data.forEach(sub => {
-    const div = document.createElement("div");
-    div.className = "submission-card";
-    div.innerHTML = `
-      <span class="kicker">${sub.status.toUpperCase()}</span>
-      <h3>${sub.title}</h3>
-      <p class="dek">${sub.body}</p>
-    `;
-    list.appendChild(div);
-  });
-}
-
-// ---------- Admin: load ALL submissions ----------
-async function loadAdminSubmissions() {
-  const list = $("admin-submissions");
-  if (!list) return;
-
-  const { data: user } = await supabase.auth.getUser();
-  if (!user.user || user.user.email !== ADMIN_EMAIL) {
-    list.innerHTML = "<p class='dek'>Admin only.</p>";
-    return;
-  }
-
-  const { data, error } = await supabase
-    .from("submissions")
-    .select("*")
-    .order("created_at", { ascending: false });
-
-  list.innerHTML = "";
-
-  if (error || !data.length) {
-    list.innerHTML = "<p class='dek'>No submissions yet.</p>";
-    return;
-  }
-
-  data.forEach(sub => {
-    const div = document.createElement("div");
-    div.className = "submission-card admin";
-    div.innerHTML = `
-      <span class="kicker">${sub.status.toUpperCase()}</span>
-      <h3>${sub.title}</h3>
-      <p class="dek">${sub.body}</p>
-    `;
-    list.appendChild(div);
-  });
-}
-
-// ---------- Auth State Listener ----------
-supabase.auth.onAuthStateChange(async (event, session) => {
-  const navSignIn = $("nav-signin");
-  const navAccount = $("nav-account");
-  const profileEmail = $("profile-email");
-
-  if (session && session.user) {
-    if (navSignIn) navSignIn.style.display = "none";
-    if (navAccount) {
-      navAccount.style.display = "inline-block";
-      navAccount.textContent = session.user.email;
-    }
-    if (profileEmail) profileEmail.textContent = session.user.email;
-
-    loadUserSubmissions();
-    loadAdminSubmissions();
-  } else {
-    if (navSignIn) navSignIn.style.display = "inline-block";
-    if (navAccount) navAccount.style.display = "none";
-  }
-});
-
-// ---------- Event Listeners ----------
+// ---------- Auto popup ONLY on first visit to index ----------
 window.addEventListener("DOMContentLoaded", () => {
-  if ($("login-popup")) openLoginPopup();
+  const isIndex = window.location.pathname.endsWith("index.html") ||
+                  window.location.pathname === "/" ||
+                  window.location.pathname === "/8H-news/" ||
+                  window.location.pathname.endsWith("/8H-news/");
 
-  const loginForm = $("login-form");
-  const registerForm = $("register-form");
-  const loginLater = $("login-later");
-  const logoutBtn = $("logout-btn");
-  const submitBtn = $("submit-review-btn");
-
-  if (loginForm) {
-    loginForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      try {
-        await loginUser($("login-email").value, $("login-password").value);
-        closeLoginPopup();
-      } catch (err) {
-        alert(err.message);
-      }
-    });
-  }
-
-  if (registerForm) {
-    registerForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      try {
-        await registerUser($("register-email").value, $("register-password").value);
-        alert("Registered! Check your email for confirmation.");
-        closeLoginPopup();
-      } catch (err) {
-        alert(err.message);
-      }
-    });
+  if (isIndex && !sessionStorage.getItem("dismissedLoginPopup")) {
+    if (loginPopup) loginPopup.style.display = "flex";
   }
 
   if (loginLater) {
-    loginLater.addEventListener("click", () => closeLoginPopup());
-  }
-
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", async () => {
-      await logoutUser();
-      alert("Signed out.");
-    });
-  }
-
-  if (submitBtn) {
-    submitBtn.addEventListener("click", async () => {
-      const title = $("review-title").value;
-      const body = $("review-body").value;
-      if (!title || !body) {
-        alert("Fill in both fields.");
-        return;
-      }
-      await submitReview(title, body);
+    loginLater.addEventListener("click", () => {
+      closeLoginPopup();
+      sessionStorage.setItem("dismissedLoginPopup", "true");
     });
   }
 });
+
+// ---------- Navbar Sign In click ----------
+if (navSignin) {
+  navSignin.addEventListener("click", (e) => {
+    e.preventDefault();
+    openLoginPopup();
+  });
+}
+
+// ---------- Auth helpers ----------
+async function refreshUser() {
+  const { data } = await supabaseClient.auth.getUser();
+  const user = data?.user;
+
+  if (user && navAccount && navSignin) {
+    navAccount.style.display = "inline-block";
+    navAccount.textContent = user.email;
+    navSignin.textContent = "Account";
+  } else {
+    if (navAccount) navAccount.style.display = "none";
+    if (navSignin) navSignin.textContent = "Sign In";
+  }
+}
+
+// ---------- Login ----------
+if (loginForm) {
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
+
+    const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+    if (error) {
+      alert("Login failed");
+      return;
+    }
+    await refreshUser();
+    closeLoginPopup();
+  });
+}
+
+// ---------- Register ----------
+if (registerForm) {
+  registerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("register-email").value;
+    const password = document.getElementById("register-password").value;
+
+    const { error } = await supabaseClient.auth.signUp({ email, password });
+    if (error) {
+      alert("Registration failed");
+      return;
+    }
+    alert("Check your email to confirm.");
+  });
+}
+
+// ---------- Logout ----------
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    await supabaseClient.auth.signOut();
+    await refreshUser();
+  });
+}
+
+// ---------- On load, check user ----------
+refreshUser();
+
+// ---------- Magic 8-Ball ----------
+const eightballQuestion = document.getElementById("eightball-question");
+const eightballAnswer = document.getElementById("eightball-answer");
+const eightballAsk = document.getElementById("eightball-ask");
+
+const eightballResponses = [
+  "Absolutely yes.",
+  "Absolutely not.",
+  "Ask again later.",
+  "The vibes say no.",
+  "The vibes say yes.",
+  "Unclear. Try snacks first.",
+  "You already know the answer.",
+  "This will be chaotic.",
+  "Probably fine.",
+  "This is a terrible idea."
+];
+
+if (eightballAsk && eightballQuestion && eightballAnswer) {
+  eightballAsk.addEventListener("click", () => {
+    const q = eightballQuestion.value.trim();
+    if (!q) {
+      eightballAnswer.textContent = "You have to actually ask something.";
+      return;
+    }
+    const idx = Math.floor(Math.random() * eightballResponses.length);
+    eightballAnswer.textContent = eightballResponses[idx];
+  });
+}
+
+// ---------- Review submissions (placeholder hooks) ----------
+const submitReviewBtn = document.getElementById("submit-review-btn");
+const reviewTitle = document.getElementById("review-title");
+const reviewBody = document.getElementById("review-body");
+const userSubmissions = document.getElementById("user-submissions");
+const adminSubmissions = document.getElementById("admin-submissions");
+
+if (submitReviewBtn && reviewTitle && reviewBody) {
+  submitReviewBtn.addEventListener("click", async () => {
+    const title = reviewTitle.value.trim();
+    const body = reviewBody.value.trim();
+    if (!title || !body) {
+      alert("Fill in both fields.");
+      return;
+    }
+
+    // Example insert (replace table name + columns with your real ones)
+    /*
+    const { error } = await supabaseClient
+      .from("submissions")
+      .insert({ title, body });
+    if (error) {
+      alert("Failed to submit.");
+      return;
+    }
+    */
+
+    const div = document.createElement("div");
+    div.className = "story";
+    div.innerHTML = `<h3>${title}</h3><p class="dek">${body}</p>`;
+    if (userSubmissions) userSubmissions.appendChild(div);
+
+    reviewTitle.value = "";
+    reviewBody.value = "";
+  });
+}
+
+// You can later wire adminSubmissions to Supabase with your own table.
