@@ -2,75 +2,152 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>8H-News – Weather">
+<title>8H-News – Weather Report">
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
 
-<div class="ticker"><div class="ticker-track">
-<span>Weather</span><span>Forecast</span><span>Conditions</span>
-</div></div>
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Weather Report</span>
+    <span>Live conditions</span>
+    <span>Powered by 8H chaos</span>
+  </div>
+</div>
 
 <header class="masthead">
-<div class="masthead-inner">
-<h1 class="title">8H<span>Weather</span></h1>
-<p class="tagline">Real or fake forecast — your choice</p>
-<div class="masthead-bottom"><div class="rule"></div><div class="rule"></div></div>
-</div>
+  <div class="masthead-inner">
+    <div class="masthead-top">
+      <span>Rainharp House</span>
+      <span>NSW, Australia</span>
+    </div>
+
+    <h1 class="title">8H<span>News</span></h1>
+    <p class="tagline">Weather Report</p>
+
+    <div class="masthead-bottom">
+      <div class="rule"></div>
+      <div class="rule"></div>
+    </div>
+
+    <p class="desc">Live weather conditions for the brave students of 8H.</p>
+  </div>
 </header>
 
 <nav class="navbar">
-<a href="index.html">Front Page</a>
-<a href="weekly.html">Weekly</a>
-<a href="8ball.html">8-Ball</a>
-<a href="lore.html">Lore</a>
-<a href="weather.html" class="active">Weather</a>
-<a href="review.html">Review</a>
-<a href="archive.html">Archive</a>
-<a href="#" id="nav-signin">Sign In</a>
-<span id="nav-account" style="display:none;"></span>
+  <a href="index.html">Front Page</a>
+  <a href="weekly.html">Weekly</a>
+  <a href="8ball.html">8-Ball</a>
+  <a href="lore.html">Lore</a>
+  <a href="weather.html" class="active">Weather</a>
+  <a href="review.html">Review</a>
+  <a href="archive.html">Archive</a>
+  <a href="#" id="nav-signin">Sign In</a>
+  <span id="nav-account" style="display:none;"></span>
 </nav>
 
 <main class="front-page">
 
-<section class="section-head">
-<h2 class="section-title">Weather</h2>
-<p class="dek">Paste your forecast here.</p>
-</section>
+  <section class="section-head">
+    <h2 class="section-title">Today's Weather</h2>
+    <p class="dek">Live weather data for your area.</p>
+  </section>
 
-<div class="grid">
-<div class="weather-box">
-<p class="weather-loading">Today</p>
-<p class="weather-temp">22°</p>
-<p class="weather-desc">Sunny</p>
-<p class="weather-wind">Wind: 10km/h</p>
-</div>
-
-<div class="weather-box">
-<p class="weather-loading">Tomorrow</p>
-<p class="weather-temp">19°</p>
-<p class="weather-desc">Cloudy</p>
-<p class="weather-wind">Wind: 8km/h</p>
-</div>
-
-<div class="weather-box">
-<p class="weather-loading">Weekend</p>
-<p class="weather-temp">25°</p>
-<p class="weather-desc">Warm</p>
-<p class="weather-wind">Wind: 12km/h</p>
-</div>
-</div>
+  <div class="weather-box">
+    <p id="weather-loading" class="weather-loading">Loading weather...</p>
+    <p id="weather-temp" class="weather-temp" style="display:none;"></p>
+    <p id="weather-desc" class="weather-desc" style="display:none;"></p>
+    <p id="weather-wind" class="weather-wind" style="display:none;"></p>
+  </div>
 
 </main>
 
 <footer class="site-footer">
-<p>© 2026 8H-News</p>
-<p class="fine-print">Made by Will</p>
+  <p>© 2026 8H-News</p>
+  <p class="fine-print">Made by Will</p>
 </footer>
 
+<div id="login-popup" class="login-popup" style="display:none;">
+  <div class="login-dialog">
+
+    <button id="login-later">Sign in later</button>
+
+    <h2 class="hed">Sign in to 8H-News</h2>
+    <p class="dek">Log in or create an account.</p>
+
+    <div class="login-columns">
+
+      <form id="login-form" class="login-form">
+        <h3 class="hed-sm">Log in</h3>
+        <label>Email</label>
+        <input type="email" id="login-email" required>
+
+        <label>Password</label>
+        <input type="password" id="login-password" required>
+
+        <button type="submit">Sign In</button>
+      </form>
+
+      <form id="register-form" class="login-form">
+        <h3 class="hed-sm">Create account</h3>
+        <label>Email</label>
+        <input type="email" id="register-email" required>
+
+        <label>Password</label>
+        <input type="password" id="register-password" required>
+
+        <button type="submit">Register</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
 <script type="module" src="app.js"></script>
+
+<script>
+// ------------------------------
+// Weather API (Open-Meteo)
+// ------------------------------
+
+async function loadWeather() {
+  const loading = document.getElementById("weather-loading");
+  const temp = document.getElementById("weather-temp");
+  const desc = document.getElementById("weather-desc");
+  const wind = document.getElementById("weather-wind");
+
+  try {
+    // Rainharp House / NSW coordinates (approx)
+    const lat = -33.86;
+    const lon = 151.20;
+
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    const weather = data.current_weather;
+
+    loading.style.display = "none";
+
+    temp.style.display = "block";
+    desc.style.display = "block";
+    wind.style.display = "block";
+
+    temp.textContent = `${weather.temperature}°C`;
+    desc.textContent = `Conditions: ${weather.weathercode}`;
+    wind.textContent = `Wind: ${weather.windspeed} km/h`;
+
+  } catch (err) {
+    loading.textContent = "Failed to load weather.";
+  }
+}
+
+loadWeather();
+</script>
+
 </body>
 </html>
