@@ -1,49 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>8H-News – Lore</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+<title>8H-News – Lore">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="page-lore">
 
-  <nav class="navbar">
-    <div class="nav-left">
-      <a href="index.html" class="nav-link">Front Page</a>
-      <a href="weekly.html" class="nav-link">Weekly</a>
-      <a href="8ball.html" class="nav-link">8-Ball</a>
-      <a href="lore.html" class="nav-link active">Lore</a>
-      <a href="weather.html" class="nav-link">Weather</a>
-      <a href="review.html" class="nav-link">Review</a>
-      <a href="archive.html" class="nav-link">Archive</a>
-    </div>
-    <div class="nav-right">
-      <a href="#" id="nav-signin" class="nav-link nav-signin">Sign In</a>
-      <span id="nav-account" class="nav-account" style="display:none;"></span>
-    </div>
-  </nav>
+<body>
 
-  <main class="layout">
-    <section class="section">
-      <h2 class="hed">8H Lore</h2>
-      <p class="dek">Paste your chaotic backstory, characters, and legends here.</p>
-    </section>
+<div class="ticker"><div class="ticker-track">
+<span>Lore</span><span>Backstory</span><span>Characters</span>
+</div></div>
 
-    <section class="grid grid-2">
-      <article class="story-card">
-        <span class="kicker">Character</span>
-        <h3 class="hed-sm">Name</h3>
-        <p class="dek">Description.</p>
-      </article>
-      <article class="story-card">
-        <span class="kicker">Event</span>
-        <h3 class="hed-sm">Title</h3>
-        <p class="dek">Description.</p>
-      </article>
-    </section>
-  </main>
+<header class="masthead">
+<div class="masthead-inner">
+<h1 class="title">8H<span>Lore</span></h1>
+<p class="tagline">The legends of Year 8</p>
+<div class="masthead-bottom"><div class="rule"></div><div class="rule"></div></div>
+</div>
+</header>
 
-  <script type="module" src="app.js"></script>
+<nav class="navbar">
+<a href="index.html">Front Page</a>
+<a href="weekly.html">Weekly</a>
+<a href="8ball.html">8-Ball</a>
+<a href="lore.html" class="active">Lore</a>
+<a href="weather.html">Weather</a>
+<a href="review.html">Review</a>
+<a href="archive.html">Archive</a>
+<a href="#" id="nav-signin">Sign In</a>
+<span id="nav-account" style="display:none;"></span>
+</nav>
+
+<main class="front-page">
+
+<section class="section-head">
+<h2 class="section-title">Lore</h2>
+<p class="dek">Paste your chaotic backstory here.</p>
+</section>
+
+<div class="grid">
+<div class="story"><h3>Character</h3><p class="dek">Description.</p></div>
+<div class="story"><h3>Event</h3><p class="dek">Description.</p></div>
+<div class="story"><h3>Legend</h3><p class="dek">Description.</p></div>
+<div class="story"><h3>History</h3><p class="dek">Description.</p></div>
+</div>
+
+</main>
+
+<footer class="site-footer">
+<p>© 2026 8H-News</p>
+<p class="fine-print">Made by Will</p>
+</footer>
+
+<script type="module" src="app.js"></script>
 </body>
 </html>
