@@ -1,54 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>8H-News – Weather</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+<title>8H-News – Weather">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="page-weather">
 
-  <nav class="navbar">
-    <div class="nav-left">
-      <a href="index.html" class="nav-link">Front Page</a>
-      <a href="weekly.html" class="nav-link">Weekly</a>
-      <a href="8ball.html" class="nav-link">8-Ball</a>
-      <a href="lore.html" class="nav-link">Lore</a>
-      <a href="weather.html" class="nav-link active">Weather</a>
-      <a href="review.html" class="nav-link">Review</a>
-      <a href="archive.html" class="nav-link">Archive</a>
-    </div>
-    <div class="nav-right">
-      <a href="#" id="nav-signin" class="nav-link nav-signin">Sign In</a>
-      <span id="nav-account" class="nav-account" style="display:none;"></span>
-    </div>
-  </nav>
+<body>
 
-  <main class="layout">
-    <section class="section">
-      <h2 class="hed">8H Weather</h2>
-      <p class="dek">Real or fake forecast—your choice.</p>
-    </section>
+<div class="ticker"><div class="ticker-track">
+<span>Weather</span><span>Forecast</span><span>Conditions</span>
+</div></div>
 
-    <section class="grid grid-3">
-      <article class="story-card">
-        <span class="kicker">Today</span>
-        <h3 class="hed-sm">Conditions</h3>
-        <p class="dek">Paste your forecast here.</p>
-      </article>
-      <article class="story-card">
-        <span class="kicker">Tomorrow</span>
-        <h3 class="hed-sm">Conditions</h3>
-        <p class="dek">Paste your forecast here.</p>
-      </article>
-      <article class="story-card">
-        <span class="kicker">Weekend</span>
-        <h3 class="hed-sm">Conditions</h3>
-        <p class="dek">Paste your forecast here.</p>
-      </article>
-    </section>
-  </main>
+<header class="masthead">
+<div class="masthead-inner">
+<h1 class="title">8H<span>Weather</span></h1>
+<p class="tagline">Real or fake forecast — your choice</p>
+<div class="masthead-bottom"><div class="rule"></div><div class="rule"></div></div>
+</div>
+</header>
 
-  <script type="module" src="app.js"></script>
+<nav class="navbar">
+<a href="index.html">Front Page</a>
+<a href="weekly.html">Weekly</a>
+<a href="8ball.html">8-Ball</a>
+<a href="lore.html">Lore</a>
+<a href="weather.html" class="active">Weather</a>
+<a href="review.html">Review</a>
+<a href="archive.html">Archive</a>
+<a href="#" id="nav-signin">Sign In</a>
+<span id="nav-account" style="display:none;"></span>
+</nav>
+
+<main class="front-page">
+
+<section class="section-head">
+<h2 class="section-title">Weather</h2>
+<p class="dek">Paste your forecast here.</p>
+</section>
+
+<div class="grid">
+<div class="weather-box">
+<p class="weather-loading">Today</p>
+<p class="weather-temp">22°</p>
+<p class="weather-desc">Sunny</p>
+<p class="weather-wind">Wind: 10km/h</p>
+</div>
+
+<div class="weather-box">
+<p class="weather-loading">Tomorrow</p>
+<p class="weather-temp">19°</p>
+<p class="weather-desc">Cloudy</p>
+<p class="weather-wind">Wind: 8km/h</p>
+</div>
+
+<div class="weather-box">
+<p class="weather-loading">Weekend</p>
+<p class="weather-temp">25°</p>
+<p class="weather-desc">Warm</p>
+<p class="weather-wind">Wind: 12km/h</p>
+</div>
+</div>
+
+</main>
+
+<footer class="site-footer">
+<p>© 2026 8H-News</p>
+<p class="fine-print">Made by Will</p>
+</footer>
+
+<script type="module" src="app.js"></script>
 </body>
 </html>
