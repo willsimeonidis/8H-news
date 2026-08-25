@@ -4,42 +4,136 @@
 <meta charset="UTF-8">
 <title>8H-News – Archive">
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
 
-<div class="ticker"><div class="ticker-track">
-<span>Archive</span><span>Past Issues</span>
-</div></div>
+<div class="ticker">
+  <div class="ticker-track">
+    <span>8H Archive</span>
+    <span>Past stories</span>
+    <span>History of chaos</span>
+  </div>
+</div>
 
 <header class="masthead">
-<div class="masthead-inner">
-<h1 class="title">8H<span>Archive</span></h1>
-<p class="tagline">Past issues</p>
-<div class="masthead-bottom"><div class="rule"></div><div class="rule"></div></div>
-</div>
+  <div class="masthead-inner">
+    <div class="masthead-top">
+      <span>Rainharp House</span>
+      <span>NSW, Australia</span>
+    </div>
+
+    <h1 class="title">8H<span>News</span></h1>
+    <p class="tagline">Archive</p>
+
+    <div class="masthead-bottom">
+      <div class="rule"></div>
+      <div class="rule"></div>
+    </div>
+
+    <p class="desc">Every story ever published on 8H-News — preserved for future generations of students who will definitely judge you.</p>
+  </div>
 </header>
 
 <nav class="navbar">
-<a href="index.html">Front Page</a>
-<a href="weekly.html">Weekly</a>
-<a href="8ball.html">8-Ball</a>
-<a href="lore.html">Lore</a>
-<a href="weather.html">Weather</a>
-<a href="review.html">Review</a>
-<a href="archive.html" class="active">Archive</a>
-<a href="#" id="nav-signin">Sign In</a>
-<span id="nav-account" style="display:none;"></span>
+  <a href="index.html">Front Page</a>
+  <a href="weekly.html">Weekly</a>
+  <a href="8ball.html">8-Ball</a>
+  <a href="lore.html">Lore</a>
+  <a href="weather.html">Weather</a>
+  <a href="review.html">Review</a>
+  <a href="archive.html" class="active">Archive</a>
+  <a href="#" id="nav-signin">Sign In</a>
+  <span id="nav-account" style="display:none;"></span>
 </nav>
 
 <main class="front-page">
 
-<section class="section-head">
-<h2 class="section-title">Archive</h2>
-<p class="dek">Paste your past issues here.</p>
-</section>
+  <section class="section-head">
+    <h2 class="section-title">Archive</h2>
+    <p class="dek">Browse every story ever published on 8H-News.</p>
+  </section>
 
-<div class="grid">
-<div class="story"><h3>Week 1</h3><p class="dek">Summary.</p></div>
+  <div class="grid single-col">
+
+    <div class="story">
+      <h3>Week 1 – The Beginning</h3>
+      <p class="dek">The first week of 8H-News. The chaos was small, but the potential was massive.</p>
+    </div>
+
+    <div class="story">
+      <h3>Week 2 – The Chromebook Incident</h3>
+      <p class="dek">A Chromebook fell. A scream echoed. A legend was born.</p>
+    </div>
+
+    <div class="story">
+      <h3>Week 3 – The Great Pencil Heist</h3>
+      <p class="dek">14 pencils vanished in one day. The thief remains at large.</p>
+    </div>
+
+    <div class="story">
+      <h3>Week 4 – The Chair Flip</h3>
+      <p class="dek">A chair was flipped with such force that it became school-wide lore.</p>
+    </div>
+
+    <div class="story">
+      <h3>Week 5 – The Isaac & Awa Saga</h3>
+      <p class="dek">Rumors. Drama. Denials. The story continues.</p>
+    </div>
+
+    <div class="story">
+      <h3>Week 6 – The Forbidden Corner</h3>
+      <p class="dek">A mysterious corner of the classroom that no one dares enter.</p>
+    </div>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>© 2026 8H-News</p>
+  <p class="fine-print">Made by Will</p>
+</footer>
+
+<div id="login-popup" class="login-popup" style="display:none;">
+  <div class="login-dialog">
+
+    <button id="login-later">Sign in later</button>
+
+    <h2 class="hed">Sign in to 8H-News</h2>
+    <p class="dek">Log in or create an account.</p>
+
+    <div class="login-columns">
+
+      <form id="login-form" class="login-form">
+        <h3 class="hed-sm">Log in</h3>
+        <label>Email</label>
+        <input type="email" id="login-email" required>
+
+        <label>Password</label>
+        <input type="password" id="login-password" required>
+
+        <button type="submit">Sign In</button>
+      </form>
+
+      <form id="register-form" class="login-form">
+        <h3 class="hed-sm">Create account</h3>
+        <label>Email</label>
+        <input type="email" id="register-email" required>
+
+        <label>Password</label>
+        <input type="password" id="register-password" required>
+
+        <button type="submit">Register</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
