@@ -149,7 +149,7 @@ if (reviewForm) {
       return;
     }
 
-    const { error } = await supabase.from("reviews").insert({
+    const { error } = await supabase.from("review").insert({
       user_id: user.id,
       title,
       body
