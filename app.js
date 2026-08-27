@@ -3,7 +3,8 @@
 // --------------------------------------------------
 
 const supabaseUrl = "https://zjyqbddvrhkyewmdsilq.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqeXFiZGR2cmhreWV3bWRzaWxxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2MTg3MDAsImV4cCI6MjEwMzE5NDcwMH0.VtZ-vS4Mv7AZDG_4NmQioAv6km93R0BKutpqIQxN5t0";
+const supabaseKey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqeXFiZGR2cmhreWV3bWRzaWxxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2MTg3MDAsImV4cCI6MjEwMzE5NDcwMH0.VtZ-vS4Mv7AZDG_4NmQioAv6km93R0BKutpqIQxN5t0";
 
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
@@ -43,7 +44,7 @@ if (loginForm) {
 
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
-      password
+      password,
     });
 
     if (error) {
@@ -71,7 +72,7 @@ if (registerForm) {
 
     const { data, error } = await supabase.auth.signUp({
       email,
-      password
+      password,
     });
 
     if (error) {
@@ -87,7 +88,9 @@ if (registerForm) {
 // --------------------------------------------------
 
 async function updateAccountDisplay() {
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   if (user) {
     navSignin.style.display = "none";
@@ -121,7 +124,6 @@ function unlockReviewIfNeeded() {
 
 unlockReviewIfNeeded();
 
-// Sign-in button inside review page
 const reviewSigninBtn = document.getElementById("review-signin-btn");
 if (reviewSigninBtn) {
   reviewSigninBtn.addEventListener("click", () => {
@@ -139,10 +141,12 @@ if (reviewForm) {
   reviewForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const title = document.getElementById("review-title").value;
-    const body = document.getElementById("review-body").value;
+    const reviewText = document.getElementById("review-body").value;
+    const reviewRating = 5; // static for now, can add rating input later
 
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
       alert("You must be signed in.");
@@ -151,8 +155,8 @@ if (reviewForm) {
 
     const { error } = await supabase.from("review").insert({
       user_id: user.id,
-      title,
-      body
+      content: reviewText,
+      rating: reviewRating,
     });
 
     if (error) {
@@ -220,7 +224,7 @@ const responses = [
   "Maybe.",
   "Without a doubt.",
   "I wouldn't count on it.",
-  "Sources decline to comment."
+  "Sources decline to comment.",
 ];
 
 function eightBallReply() {
