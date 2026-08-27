@@ -8,6 +8,8 @@ const supabaseKey =
 
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
+supabase.auth.getUser().then(console.log);
+
 // --------------------------------------------------
 // LOGIN POPUP
 // --------------------------------------------------
