@@ -97,7 +97,7 @@ async function updateAccountDisplay() {
   if (user) {
     navSignin.style.display = "none";
     navAccount.style.display = "inline";
-    navAccount.textContent = user.email;
+    navAccount.text = user.email;
   } else {
     navSignin.style.display = "inline";
     navAccount.style.display = "none";
@@ -143,8 +143,8 @@ if (reviewForm) {
   reviewForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const reviewText = document.getElementById("review-body").value;
-    const reviewRating = 5; // static for now, can add rating input later
+    const reviewTitle = document.getElementById("review-title").value;
+    const reviewBody = document.getElementById("review-body").value;
 
     const {
       data: { user },
@@ -157,8 +157,9 @@ if (reviewForm) {
 
     const { error } = await supabase.from("review").insert({
       user_id: user.id,
-      content: reviewText,
-      rating: reviewRating,
+      title: reviewTitle,
+      body: reviewBody,
+      status: "pending"
     });
 
     if (error) {
