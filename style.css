@@ -45,7 +45,7 @@ h1, h2, h3 {
   display: flex;
   gap: 4rem;
   white-space: nowrap;
-  animation: tickerMove 18s linear infinite;
+  animation: tickerMove 1s linear infinite;
 }
 
 .ticker-track span {
@@ -79,19 +79,28 @@ h1, h2, h3 {
 }
 
 .title {
-  font-size: 3.5rem;
-  margin: 0.5rem 0 0;
+  font-family: "Playfair Display", serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  letter-spacing: -0.01em;
+  margin: 0;
+  line-height: 0.95;
+  color: #1a1a1a; /* OG ink colour */
 }
 
 .title span {
-  font-weight: 900;
+  font-style: italic;
+  font-weight: 700;
+  color: #8b1e1e; /* OG red */
 }
 
 .tagline {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 0.9rem;
-  margin-top: -0.3rem;
-  color: #555;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #4a4640; /* OG soft ink */
+  margin: 0.4rem 0 1rem;
 }
 
 /* --------------------------------------------------
