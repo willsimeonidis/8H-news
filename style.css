@@ -45,7 +45,7 @@ h1, h2, h3 {
   display: flex;
   gap: 4rem;
   white-space: nowrap;
-  animation: tickerMove 25s linear infinite;
+  animation: tickerMove 15s linear infinite;
 }
 
 .ticker-track span {
